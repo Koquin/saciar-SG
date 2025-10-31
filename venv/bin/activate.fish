@@ -33,7 +33,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV /home/durag/Documents/Iago/Somniorum/Projetos/Saciar/venv
+set -gx VIRTUAL_ENV '/home/durag/Documents/Iago/Somniorum/Projetos/Saciar/Saciar - Sistema de Gerenciamento/venv'
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/"bin $PATH

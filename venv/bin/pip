@@ -1,4 +1,6 @@
-#!/home/durag/Documents/Iago/Somniorum/Projetos/Saciar/venv/bin/python3
+#!/bin/sh
+'''exec' "/home/durag/Documents/Iago/Somniorum/Projetos/Saciar/Saciar - Sistema de Gerenciamento/venv/bin/python3" "$0" "$@"
+' '''
 # -*- coding: utf-8 -*-
 import re
 import sys
