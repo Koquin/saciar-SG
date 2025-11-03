@@ -1,6 +1,6 @@
 import customtkinter as ctk
 from tkinter import messagebox
-from utils.api_utils import authenticate_user
+from controllers.auth_controller import authenticate_user
 
 class LoginForm(ctk.CTkToplevel):
     def __init__(self, master, login_success_callback):

@@ -2,7 +2,8 @@
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 import datetime
-import hashlib 
+import hashlib
+import requests
 
 # Conexão com o MongoDB local
 client = MongoClient("mongodb://localhost:27017/")
@@ -10,89 +11,43 @@ db = client["gerenciamento_clientes"]
 collection_clients = db["clientes"]
 collection_purchases = db["compras"] 
 collection_prizes = db["premios"]
-collection_auth = db["auth_users"] # COLLECTION PARA AUTENTICAÇÃO
-
-# --- FUNÇÃO DE AJUDA PARA HASH (usada internamente) ---
-def hash_password(password):
-    """Gera o hash MD5 da senha."""
-    return hashlib.md5(password.encode()).hexdigest()
-
-# ----------------- CONFIGURAÇÃO INICIAL DE AUTENTICAÇÃO -----------------
-DEFAULT_USERNAME = "admin"
-DEFAULT_PASSWORD = "123" 
-
-if collection_auth.count_documents({}) == 0:
-    try:
-        hashed_password = hash_password(DEFAULT_PASSWORD)
-        collection_auth.insert_one({
-            "username": DEFAULT_USERNAME,
-            "password_hash": hashed_password
-        })
-        print("---------------------------------------------------------")
-        print(f"USUÁRIO PADRÃO CRIADO: {DEFAULT_USERNAME} / {DEFAULT_PASSWORD}")
-        print("---------------------------------------------------------")
-    except Exception as e:
-        print(f"Erro ao criar usuário padrão no MongoDB: {e}")
+BASE_URL = "http://localhost:8000"  
 
 # ----------------- Funções de AUTENTICAÇÃO (MongoDB) -----------------
 
-def authenticate_user(username, password):
-    """
-    Verifica se o usuário e a senha correspondem ao registro no banco de dados.
-    Retorna True se autenticado, False caso contrário.
-    """
-    try:
-        password_hash = hash_password(password)
-        
-        user = collection_auth.find_one({
-            "username": username,
-            "password_hash": password_hash
-        })
-        
-        return user is not None
-        
-    except Exception as e:
-        print(f"Erro ao autenticar usuário: {e}")
-        return False
 
 # ----------------- Funções CRUD - CLIENTES (MongoDB) -----------------
 
 def get_clients():
-    """Busca todos os clientes"""
+    print("No api_utils, metodo get_clients")
     try:
-        clients = list(collection_clients.find({}, {"_id": 0})) 
-        return clients
+        request = requests.get(f"{BASE_URL}/clientes")
+        if request.status_code == 200:
+            print("Clientes buscados com sucesso!")
+            return request.json()
+        else:
+            return []
     except Exception as e:
-        print("Erro ao buscar clientes:", e)
+        print("Erro na requisição de clientes:", e)
         return []
 
-# --- NOVA FUNÇÃO DE BUSCA PARA CLIENTES ---
-def search_clients(query):
-    """Busca clientes por nome, CPF ou telefone usando regex (insensível a caixa)."""
-    if not query:
-        return get_clients() # Retorna todos se a consulta estiver vazia
-        
+
+def search_clients(query: str):
+    print("No api_utils, metodo search_clients, variaveis: ", query)
     try:
-        # Cria um padrão de regex insensível a caixa para a consulta
-        regex_pattern = {"$regex": query, "$options": "i"}
-        
-        filter_query = {
-            "$or": [
-                {"nome": regex_pattern},
-                {"cpf": regex_pattern},
-                {"telefone": regex_pattern}
-            ]
-        }
-        
-        clients = list(collection_clients.find(filter_query, {"_id": 0}))
+        params = {"q": query} if query else {}
+        response = requests.get(f"{BASE_URL}/clientes/search", params=params)
+        response.raise_for_status()
+        clients = response.json()
+        print(f"Clientes buscados com sucesso via API! Total: {len(clients)}")
         return clients
-    except Exception as e:
-        print("Erro ao buscar clientes:", e)
+    except requests.exceptions.RequestException as e:
+        print("Erro ao buscar clientes via API:", e)
         return []
 
 
 def post_client(client):
-    """Cadastra um novo cliente"""
+    print("No api_utils, metodo post_client, variaveis: ", client)
     try:
         novo_cliente = {
             "nome": client.get("nome", ""),
@@ -101,14 +56,14 @@ def post_client(client):
             "pontos": client.get("pontos", 0)
         }
 
-        if collection_clients.find_one({"cpf": novo_cliente["cpf"]}):
-            print("Cliente com esse CPF já existe.")
+        cliente = requests.post(f"{BASE_URL}/clientes", json=novo_cliente)
+        if cliente.status_code == 201:
+            print("Cliente cadastrado com sucesso via API!")
+            return cliente.json()
+        else:
             return None
-
-        collection_clients.insert_one(novo_cliente)
-        return novo_cliente
     except Exception as e:
-        print("Erro ao cadastrar cliente:", e)
+        print("Erro na requisição de cadastro de cliente via API:", e)
         return None
 
 
@@ -132,11 +87,16 @@ def put_client(client):
         return None
 
 
-def delete_client(cpf):
-    """Remove cliente pelo CPF"""
+def delete_client(id):
+    print("No api_utils, metodo delete_client, variaveis: ", id)
     try:
-        result = collection_clients.delete_one({"cpf": cpf})
-        return result.deleted_count
+        result = requests.delete(f"{BASE_URL}/clientes/{id}")
+        print("Resultado da deleção via API:", result.status_code)
+        if result.status_code == 204:
+            print("Cliente deletado com sucesso via API!")
+            return True
+        else:
+            return False
     except Exception as e:
         print("Erro ao deletar cliente:", e)
         return 0
@@ -156,10 +116,9 @@ def get_purchases():
 def search_purchases(query):
     """Busca compras por nome do cliente, CPF ou data usando regex (insensível a caixa)."""
     if not query:
-        return get_purchases() # Retorna todos se a consulta estiver vazia
+        return get_purchases()
         
     try:
-        # Cria um padrão de regex insensível a caixa para a consulta
         regex_pattern = {"$regex": query, "$options": "i"}
         
         filter_query = {

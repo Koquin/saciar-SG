@@ -44,6 +44,10 @@ class ClientForm(ctk.CTkToplevel):
                  self.entry_cpf.configure(state="disabled")
 
         ctk.CTkButton(self, text=mode, command=self.submit).pack(pady=15)
+        
+        # --- NOVO: Ligar a tecla Enter (Return) à função de submissão ---
+        self.bind('<Return>', self.submit_on_enter)
+        # ---------------------------------------------------------------
 
     # ---------------- VALIDAÇÕES ----------------
     def validar_cpf(self, cpf: str) -> bool:
@@ -64,6 +68,11 @@ class ClientForm(ctk.CTkToplevel):
             return p >= 0 and p <= 10
         except ValueError:
             return False
+            
+    def submit_on_enter(self, event):
+        """Função wrapper para chamar submit() quando a tecla Enter for pressionada."""
+        # O bind passa o objeto Event como primeiro argumento, que ignoramos na função submit original.
+        self.submit()
 
     # ---------------- SUBMIT ----------------
     def submit(self):
@@ -103,7 +112,7 @@ class ClientForm(ctk.CTkToplevel):
         self.callback(client_data)
         self.destroy()
 
-    def set_focus(self): # <--- GARANTA QUE ESTE MÉTODO ESTÁ AQUI
+    def set_focus(self):
         """Método chamado via after() para garantir que a janela está visível antes de bloquear."""
         self.grab_set()
         self.focus_force()

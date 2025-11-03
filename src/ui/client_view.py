@@ -86,15 +86,17 @@ class ClientView(ctk.CTkFrame):
 
         self.tree = ttk.Treeview(
             self,
-            columns=("nome", "cpf", "telefone", "pontos"),
+            columns=("id", "nome", "cpf", "telefone", "pontos"),
             show="headings",
             selectmode="browse",
         )
+        self.tree.heading("id", text="ID")
         self.tree.heading("nome", text="NOME")
         self.tree.heading("cpf", text="CPF")
         self.tree.heading("telefone", text="TELEFONE")
         self.tree.heading("pontos", text="PONTOS")
 
+        self.tree.column("id", width=50, anchor='center')
         self.tree.column("nome", width=200, anchor='w')
         self.tree.column("cpf", width=120, anchor='center')
         self.tree.column("telefone", width=120, anchor='center')
@@ -109,6 +111,7 @@ class ClientView(ctk.CTkFrame):
         try:
             self.client_data = get_clients()
             self.display_clients(self.client_data)
+            print("Clientes carregados:", self.client_data)
         except Exception as e:
             messagebox.showerror("Erro de API", f"Falha ao carregar clientes: {e}")
 
@@ -118,6 +121,7 @@ class ClientView(ctk.CTkFrame):
         for client in clients:
             pontos = client.get("pontos", 0)
             self.tree.insert("", "end", values=(
+                client["id"],
                 client["nome"],
                 client["cpf"],
                 client["telefone"],
@@ -128,14 +132,18 @@ class ClientView(ctk.CTkFrame):
         """Atualiza o índice do cliente selecionado"""
         selected = self.tree.selection()
         if selected:
+            print("Item selecionado na tabela:", selected)
             item_id = selected[0]
             values = self.tree.item(item_id, 'values')
             if values:
-                cpf = values[1] 
+                id = values[0] 
+                print("Valores do item selecionado:", values)
                 for i, client in enumerate(self.client_data):
-                    if client.get('cpf') == cpf:
+                    if client.get('id') == id:
                         self.selected_client_index = i
+                        print("Cliente selecionado:", client)
                         return
+        print("Nenhum cliente selecionado.")
         self.selected_client_index = None
 
     def handle_client_callback(self, client_data, mode):
@@ -185,8 +193,9 @@ class ClientView(ctk.CTkFrame):
         confirm = messagebox.askyesno("Remover", f"Confirmar a remoção de {client['nome']} (CPF: {client['cpf']})?")
         
         if confirm:
-            deleted_count = delete_client(client["cpf"])
-            if deleted_count > 0:
+            deleted = delete_client(client["id"])
+            print("Resultado da deleção no ClientView:", deleted)
+            if deleted:
                 messagebox.showinfo("Sucesso", "Cliente removido com sucesso!")
             else:
                 messagebox.showerror("Erro", "Falha ao remover cliente. Nenhuma alteração feita.")
