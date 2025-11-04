@@ -13,94 +13,6 @@ collection_purchases = db["compras"]
 collection_prizes = db["premios"]
 BASE_URL = "http://localhost:8000"  
 
-# ----------------- Funções de AUTENTICAÇÃO (MongoDB) -----------------
-
-
-# ----------------- Funções CRUD - CLIENTES (MongoDB) -----------------
-
-def get_clients():
-    print("No api_utils, metodo get_clients")
-    try:
-        request = requests.get(f"{BASE_URL}/clientes")
-        if request.status_code == 200:
-            print("Clientes buscados com sucesso!")
-            return request.json()
-        else:
-            return []
-    except Exception as e:
-        print("Erro na requisição de clientes:", e)
-        return []
-
-
-def search_clients(query: str):
-    print("No api_utils, metodo search_clients, variaveis: ", query)
-    try:
-        params = {"q": query} if query else {}
-        response = requests.get(f"{BASE_URL}/clientes/search", params=params)
-        response.raise_for_status()
-        clients = response.json()
-        print(f"Clientes buscados com sucesso via API! Total: {len(clients)}")
-        return clients
-    except requests.exceptions.RequestException as e:
-        print("Erro ao buscar clientes via API:", e)
-        return []
-
-
-def post_client(client):
-    print("No api_utils, metodo post_client, variaveis: ", client)
-    try:
-        novo_cliente = {
-            "nome": client.get("nome", ""),
-            "cpf": client.get("cpf", ""),
-            "telefone": client.get("telefone", ""),
-            "pontos": client.get("pontos", 0)
-        }
-
-        cliente = requests.post(f"{BASE_URL}/clientes", json=novo_cliente)
-        if cliente.status_code == 201:
-            print("Cliente cadastrado com sucesso via API!")
-            return cliente.json()
-        else:
-            return None
-    except Exception as e:
-        print("Erro na requisição de cadastro de cliente via API:", e)
-        return None
-
-
-def put_client(client):
-    """Atualiza dados de um cliente pelo CPF"""
-    try:
-        cpf = client.get("cpf")
-        if not cpf:
-            print("CPF é obrigatório para atualizar.")
-            return None
-        
-        update_data = {k: v for k, v in client.items() if k != 'cpf'}
-        
-        result = collection_clients.update_one({"cpf": cpf}, {"$set": update_data})
-        if result.modified_count > 0:
-            print("Cliente atualizado com sucesso!")
-        
-        return client
-    except Exception as e:
-        print("Erro ao atualizar cliente:", e)
-        return None
-
-
-def delete_client(id):
-    print("No api_utils, metodo delete_client, variaveis: ", id)
-    try:
-        result = requests.delete(f"{BASE_URL}/clientes/{id}")
-        print("Resultado da deleção via API:", result.status_code)
-        if result.status_code == 204:
-            print("Cliente deletado com sucesso via API!")
-            return True
-        else:
-            return False
-    except Exception as e:
-        print("Erro ao deletar cliente:", e)
-        return 0
-
 # ----------------- Funções CRUD - COMPRAS (MongoDB) -----------------
 
 def get_purchases():
@@ -201,10 +113,6 @@ def post_purchase(purchase):
     except Exception as e:
         print("Erro ao cadastrar compra:", e)
         return None
-
-def put_purchase(purchase_id, new_data):
-    """Atualiza dados de uma compra (não implementado, retorna None)"""
-    return None 
 
 def delete_purchase(cpf, data):
     """Remove uma compra específica pelo CPF e Data (para fins didáticos)"""

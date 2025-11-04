@@ -9,6 +9,11 @@ class ClientForm(ctk.CTkToplevel):
         self.callback = callback
         self.client = client
         self.mode = mode
+        
+        # --- NOVO: Variável para armazenar o ID do MongoDB (se existir) ---
+        self.cliente_doc_id = None
+        # ------------------------------------------------------------------
+        
         self.title(f"{mode} Cliente")
         self.geometry("400x400")
         self.resizable(False, False)
@@ -38,16 +43,10 @@ class ClientForm(ctk.CTkToplevel):
             self.entry_cpf.insert(0, client.get("cpf", ""))
             self.entry_telefone.insert(0, client.get("telefone", ""))
             self.entry_pontos.insert(0, str(client.get("pontos", 0)))
-            
-            # Bloquear edição do CPF na atualização
-            if mode == "Atualizar":
-                 self.entry_cpf.configure(state="disabled")
-
+            self.cliente_doc_id = client.get("id") 
         ctk.CTkButton(self, text=mode, command=self.submit).pack(pady=15)
         
-        # --- NOVO: Ligar a tecla Enter (Return) à função de submissão ---
         self.bind('<Return>', self.submit_on_enter)
-        # ---------------------------------------------------------------
 
     # ---------------- VALIDAÇÕES ----------------
     def validar_cpf(self, cpf: str) -> bool:
@@ -71,15 +70,16 @@ class ClientForm(ctk.CTkToplevel):
             
     def submit_on_enter(self, event):
         """Função wrapper para chamar submit() quando a tecla Enter for pressionada."""
-        # O bind passa o objeto Event como primeiro argumento, que ignoramos na função submit original.
         self.submit()
 
     # ---------------- SUBMIT ----------------
     def submit(self):
         nome = self.entry_nome.get().strip()
         
-        # Pega o CPF do campo, ou do objeto self.client se estiver desabilitado (Atualizar)
-        cpf = self.client.get("cpf") if self.mode == "Atualizar" and self.client else self.entry_cpf.get().strip()
+        # Se for Atualizar, o CPF vem do self.client, senão, do campo de entrada.
+        # Simplificação: Se o campo está desabilitado, pegamos o valor da entry de qualquer forma.
+        # No entanto, vamos manter a lógica mais segura, lendo o valor atual do campo:
+        cpf = self.entry_cpf.get().strip() 
         
         telefone = self.entry_telefone.get().strip()
         pontos = self.entry_pontos.get().strip()
@@ -88,7 +88,8 @@ class ClientForm(ctk.CTkToplevel):
         if not nome or not cpf or not telefone:
             messagebox.showwarning("Campos obrigatórios", "Preencha todos os campos obrigatórios!")
             return
-
+        # ... (restante das validações de formato) ...
+        
         if not self.validar_cpf(cpf):
             messagebox.showerror("CPF inválido", "O CPF deve conter 11 números válidos (somente dígitos).")
             return
@@ -104,10 +105,15 @@ class ClientForm(ctk.CTkToplevel):
         # ---------- Se tudo estiver certo ----------
         client_data = {
             "nome": nome,
-            "cpf": cpf, # CPF que será usado para identificação no CRUD
+            "cpf": cpf, 
             "telefone": telefone,
             "pontos": int(pontos) if pontos else 0
         }
+        
+        # --- NOVO: Anexar o ID do documento se estiver no modo Atualizar ---
+        if self.mode == "Atualizar" and self.cliente_doc_id:
+            client_data["id"] = self.cliente_doc_id # Adiciona o ID do MongoDB
+        # ------------------------------------------------------------------
 
         self.callback(client_data)
         self.destroy()

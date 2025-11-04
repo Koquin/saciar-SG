@@ -2,7 +2,7 @@
 import customtkinter as ctk
 from tkinter import ttk, messagebox, BooleanVar, filedialog
 from utils.api_utils import get_purchases, post_purchase, delete_purchase, search_purchases # Importado search_purchases
-import datetime
+from datetime import datetime
 import csv 
 
 class PurchaseView(ctk.CTkFrame):
@@ -267,7 +267,7 @@ class PurchaseView(ctk.CTkFrame):
                 messagebox.showwarning("Campos Obrigatórios", "Preencha um valor válido.")
                 return
 
-            data_hora_agora = datetime.datetime.now()
+            data_hora_agora = datetime.now()
             
             compra = {
                 "cliente": "Cliente Registrado",

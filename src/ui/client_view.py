@@ -4,7 +4,7 @@ from tkinter import ttk, messagebox, filedialog
 import csv 
 from .prize_form import PrizeForm 
 from .client_form import ClientForm
-from utils.api_utils import get_clients, post_client, put_client, delete_client, get_prizes, search_clients # Importado search_clients
+from controllers.cliente_controller import get_clients, post_client, put_client, delete_client, get_prizes, search_clients # Importado search_clients
 
 class ClientView(ctk.CTkFrame):
     def __init__(self, master, controller):
@@ -171,20 +171,19 @@ class ClientView(ctk.CTkFrame):
                    mode="Cadastrar")
 
     def atualizar_cliente(self):
-        """Abre o formulário de atualização com dados preenchidos"""
+        print("Índice do cliente selecionado para atualização:", self.selected_client_index)
         if self.selected_client_index is None:
             messagebox.showwarning("Atualizar", "Selecione um cliente para atualizar!")
             return
         
         client_to_update = self.client_data[self.selected_client_index]
-        
+        print("Cliente a ser atualizado:", client_to_update)
         ClientForm(self.controller, 
                    callback=lambda data: self.handle_client_callback(data, "Atualizar"), 
                    client=client_to_update, 
                    mode="Atualizar")
                    
     def remover_cliente(self):
-        """Remove o cliente selecionado"""
         if self.selected_client_index is None:
             messagebox.showwarning("Remover", "Selecione um cliente!")
             return
