@@ -12,7 +12,7 @@ class LoginForm(ctk.CTkToplevel):
         self.after(100, self.focus_force)
 
         self.title("Login de Acesso")
-        self.geometry("350x300")
+        self.geometry("350x250")
         self.resizable(False, False)
         
         # Centraliza o conteúdo
@@ -22,10 +22,6 @@ class LoginForm(ctk.CTkToplevel):
         self.transient(master)
         self.grab_set()
         self.protocol("WM_DELETE_WINDOW", self.on_closing) # Intercepta o botão de fechar
-
-        # Título
-        ctk.CTkLabel(self, text="Login SACIAR", 
-                     font=ctk.CTkFont(size=24, weight="bold")).grid(row=0, column=0, pady=(20, 10))
 
         # Campo Usuário
         ctk.CTkLabel(self, text="Usuário:").grid(row=1, column=0, pady=(10, 0), sticky="w", padx=50)

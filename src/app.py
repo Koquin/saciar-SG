@@ -37,7 +37,9 @@ def main():
     # Prepara a janela para a SplashScreen
     root.geometry("600x400")
     root.eval('tk::PlaceWindow . center')
-    root.attributes("-fullscreen", True)
+    # Não usar fullscreen para a splash — queremos uma janela normal
+    # que fique maximizada/ocupando a tela, mas mantenha as decorações.
+    setup_window(root)
     
     # ------------------------------------------------------------------
     # Lógica de Login integrada

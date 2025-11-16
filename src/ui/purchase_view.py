@@ -1,7 +1,7 @@
 # src/ui/purchase_view.py
 import customtkinter as ctk
 from tkinter import ttk, messagebox, BooleanVar, filedialog
-from utils.api_utils import get_purchases, post_purchase, delete_purchase, search_purchases # Importado search_purchases
+from controllers.purchase_controller import get_purchases, post_purchase, delete_purchase, search_purchases
 from datetime import datetime
 import csv 
 
@@ -31,10 +31,10 @@ class PurchaseView(ctk.CTkFrame):
         self.btn_frame.grid_columnconfigure(0, weight=1)
         self.btn_frame.grid_columnconfigure(4, weight=1)
 
-        ctk.CTkButton(self.btn_frame, text="Criar Compra", fg_color="#E67E22", command=self.criar_compra).grid(
+        ctk.CTkButton(self.btn_frame, text="Criar Compra", command=self.criar_compra).grid(
             row=0, column=1, padx=10, pady=0)
         
-        ctk.CTkButton(self.btn_frame, text="Apagar Compra", fg_color="#C0392B", command=self.delete_purchase_entry).grid(
+        ctk.CTkButton(self.btn_frame, text="Apagar Compra", command=self.delete_purchase_entry).grid(
             row=0, column=2, padx=10, pady=0)
 
         ctk.CTkButton(self.btn_frame, text="Exportar para Excel", fg_color="#27AE60", command=self.export_to_excel).grid(
@@ -104,11 +104,11 @@ class PurchaseView(ctk.CTkFrame):
                     data_str = compra.get("data", "N/A")
                     data_formatada = data_str
                     try:
-                        date_obj = datetime.datetime.strptime(data_str, "%Y-%m-%d %H:%M:%S")
+                        date_obj = datetime.strptime(data_str, "%Y-%m-%d %H:%M:%S")
                         data_formatada = date_obj.strftime("%d/%m/%Y %H:%M:%S") 
                     except (ValueError, TypeError):
                         try:
-                             date_obj = datetime.datetime.strptime(data_str, "%Y-%m-%d")
+                             date_obj = datetime.strptime(data_str, "%Y-%m-%d")
                              data_formatada = date_obj.strftime("%d/%m/%Y")
                         except (ValueError, TypeError):
                              pass
@@ -142,13 +142,13 @@ class PurchaseView(ctk.CTkFrame):
 
         values = self.tree.item(selected_item, 'values')
         
-        cpf = values[1] 
-        data_hora = values[3] 
-        data_para_db = data_hora
+        purchase_id = values[0]  # ID é a primeira coluna (oculta)
+        cpf = values[2]  # CPF agora é o índice 2
+        data_hora = values[4]  # Data agora é o índice 4
         
-        if messagebox.askyesno("Confirmação", f"Tem certeza que deseja apagar a compra de {cpf} na data/hora {data_para_db}?"):
+        if messagebox.askyesno("Confirmação", f"Tem certeza que deseja apagar a compra de {cpf} na data/hora {data_hora}?"):
             try:
-                deleted_count = delete_purchase(cpf, data_para_db) 
+                deleted_count = delete_purchase(purchase_id)
                 
                 if deleted_count > 0:
                     messagebox.showinfo("Sucesso", "Compra apagada com sucesso!")
@@ -168,10 +168,14 @@ class PurchaseView(ctk.CTkFrame):
 
         self.tree = ttk.Treeview(
             self,
-            columns=("cliente", "cpf", "valor", "data", "pontos_ganhos", "delivery_status"),
+            columns=("id", "cliente", "cpf", "valor", "data", "pontos_ganhos", "delivery_status"),
             show="headings",
             selectmode="browse",
         )
+        # ID é uma coluna oculta que usaremos para deleção
+        self.tree.heading("id", text="ID")
+        self.tree.column("id", width=0, stretch=False)  # Oculta a coluna
+        
         self.tree.heading("cliente", text="CLIENTE")
         self.tree.heading("cpf", text="CPF")
         self.tree.heading("valor", text="VALOR (R$)")
@@ -186,7 +190,7 @@ class PurchaseView(ctk.CTkFrame):
         self.tree.column("pontos_ganhos", width=80, anchor='center')
         self.tree.column("delivery_status", width=80, anchor='center')
         
-        self.tree.grid(row=1, column=0, sticky="nsew", padx=10, pady=10) # row=1
+        self.tree.grid(row=1, column=0, sticky="nsew", padx=10, pady=10)
 
     def load_purchases(self):
         """Carrega todas as compras do backend."""
@@ -200,7 +204,7 @@ class PurchaseView(ctk.CTkFrame):
         """Preenche a tabela com os dados das compras"""
         self.tree.delete(*self.tree.get_children())
         for compra in purchases:
-            valor_formatado = f"R$ {compra.get('valor', 0.0):.2f}"
+            valor_formatado = f"{compra.get('valor', 0.0):.2f}"
             is_delivery = compra.get("is_delivery", False)
             delivery_status_str = "Sim" if is_delivery else "Não"
             pontos = compra.get("pontos_ganhos", 0) 
@@ -208,12 +212,13 @@ class PurchaseView(ctk.CTkFrame):
             data_str = compra.get("data", "N/A")
             data_exibicao = data_str
             try:
-                date_obj = datetime.datetime.strptime(data_str, "%Y-%m-%d %H:%M:%S")
+                date_obj = datetime.strptime(data_str, "%Y-%m-%d %H:%M:%S")
                 data_exibicao = date_obj.strftime("%d/%m/%Y %H:%M:%S")
             except Exception:
                 pass 
 
             self.tree.insert("", "end", values=(
+                compra.get("id", ""),  # ID oculto
                 compra.get("cliente", "N/A"),
                 compra.get("cpf", "N/A"),
                 valor_formatado,

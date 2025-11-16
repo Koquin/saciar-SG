@@ -10,7 +10,7 @@ class SplashScreen:
         self.frame = ctk.CTkFrame(master, fg_color="#f2ebe5")
         self.frame.pack(fill="both", expand=True)
 
-        image = Image.open("assets/logoSaciar.jpg")
+        image = Image.open("assets/logoSaciar.jpeg")
         ctk_image = ctk.CTkImage(light_image=image, dark_image=image, size=(400, 300))
 
         label = ctk.CTkLabel(self.frame, image=ctk_image, text="")

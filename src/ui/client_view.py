@@ -4,8 +4,8 @@ from tkinter import ttk, messagebox, filedialog
 import csv 
 from .prize_form import PrizeForm 
 from .client_form import ClientForm
-from controllers.cliente_controller import get_clients, post_client, put_client, delete_client, get_prizes, search_clients # Importado search_clients
-
+from controllers.cliente_controller import get_clients, post_client, put_client, delete_client, search_clients
+from controllers.prize_controller import  get_prizes
 class ClientView(ctk.CTkFrame):
     def __init__(self, master, controller):
         super().__init__(master)
@@ -36,10 +36,10 @@ class ClientView(ctk.CTkFrame):
         ctk.CTkButton(self.btn_frame, text="Cadastrar Cliente", command=self.cadastrar_cliente).grid(row=0, column=1, padx=10)
         ctk.CTkButton(self.btn_frame, text="Atualizar Cliente", command=self.atualizar_cliente).grid(row=0, column=2, padx=10)
         ctk.CTkButton(self.btn_frame, text="Remover Cliente", command=self.remover_cliente).grid(row=0, column=3, padx=10)
+        ctk.CTkButton(self.btn_frame, text="Editar Prêmios", command=self.editar_premios).grid(row=0, column=4, padx=10)
+
+        ctk.CTkButton(self.btn_frame, text="Exportar Excel", fg_color="#27AE60", command=self.export_to_excel).grid(row=0, column=5, padx=10)
         
-        ctk.CTkButton(self.btn_frame, text="Exportar Excel", fg_color="#27AE60", command=self.export_to_excel).grid(row=0, column=4, padx=10)
-        
-        ctk.CTkButton(self.btn_frame, text="Editar Prêmios", fg_color="#3498DB", command=self.editar_premios).grid(row=0, column=5, padx=10)
         
         self.load_clients()
 
@@ -96,7 +96,8 @@ class ClientView(ctk.CTkFrame):
         self.tree.heading("telefone", text="TELEFONE")
         self.tree.heading("pontos", text="PONTOS")
 
-        self.tree.column("id", width=50, anchor='center')
+        # Ocultar a coluna ID (existirá nos dados mas não será exibida)
+        self.tree.column("id", width=0, anchor='center', stretch=False, minwidth=0)
         self.tree.column("nome", width=200, anchor='w')
         self.tree.column("cpf", width=120, anchor='center')
         self.tree.column("telefone", width=120, anchor='center')
@@ -202,6 +203,17 @@ class ClientView(ctk.CTkFrame):
             self.load_clients()
             self.selected_client_index = None
 
+            
+    def editar_premios(self):
+        """Busca os prêmios atuais e abre o formulário modal de edição."""
+        try:
+            prizes_data = get_prizes() 
+            
+            PrizeForm(self.controller, self.controller, prizes_data)
+            
+        except Exception as e:
+            messagebox.showerror("Erro de API", f"Falha ao carregar a lista de prêmios: {e}")
+
     def export_to_excel(self):
         """Exporta os dados da tabela de clientes para um arquivo CSV (compatível com Excel)."""
         if not self.client_data:
@@ -218,7 +230,8 @@ class ClientView(ctk.CTkFrame):
             return 
             
         try:
-            headers = [self.tree.heading(col)['text'] for col in self.tree['columns']]
+            # Excluir a coluna 'id' dos headers exportados (é oculta)
+            headers = [self.tree.heading(col)['text'] for col in self.tree['columns'] if col != 'id']
             
             with open(file_path, 'w', newline='', encoding='utf-8') as file:
                 writer = csv.writer(file, delimiter=';') 
@@ -237,13 +250,3 @@ class ClientView(ctk.CTkFrame):
             
         except Exception as e:
             messagebox.showerror("Erro de Exportação", f"Ocorreu um erro ao salvar o arquivo: {e}")
-            
-    def editar_premios(self):
-        """Busca os prêmios atuais e abre o formulário modal de edição."""
-        try:
-            prizes_data = get_prizes() 
-            
-            PrizeForm(self.controller, self.controller, prizes_data)
-            
-        except Exception as e:
-            messagebox.showerror("Erro de API", f"Falha ao carregar a lista de prêmios: {e}")

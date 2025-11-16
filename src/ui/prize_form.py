@@ -1,6 +1,6 @@
 import customtkinter as ctk
 from tkinter import messagebox
-from utils.api_utils import get_prizes, update_prizes 
+from controllers.prize_controller import get_prizes, update_prizes 
 
 class PrizeForm(ctk.CTkToplevel):
     def __init__(self, master, controller, prizes_data):
