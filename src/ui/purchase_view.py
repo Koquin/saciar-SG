@@ -3,62 +3,39 @@ import customtkinter as ctk
 from tkinter import ttk, messagebox, BooleanVar, filedialog
 from controllers.purchase_controller import get_purchases, post_purchase, delete_purchase, search_purchases
 from datetime import datetime
-import csv 
+import csv
 
 class PurchaseView(ctk.CTkFrame):
     def __init__(self, master, controller):
         super().__init__(master)
         self.controller = controller
         self.purchase_data = []
-        
-        # Configurações do Grid
-        self.grid_rowconfigure(0, weight=0)    # Linha 0 (Busca) é fixa
-        self.grid_rowconfigure(1, weight=1)    # Linha 1 (Tabela) expande verticalmente
-        self.grid_rowconfigure(2, weight=0)    # Linha 2 (Botões) é fixa
-        self.grid_columnconfigure(0, weight=1) 
-
-        # 1. Formulário de Busca (row=0)
+        self.grid_rowconfigure(0, weight=0)
+        self.grid_rowconfigure(1, weight=1)
+        self.grid_rowconfigure(2, weight=0)
+        self.grid_columnconfigure(0, weight=1)
         self.create_search_form()
-
-        # 2. Tabela (row=1)
         self.create_purchase_table()
-
-        # 3. Botões de Ação (row=2)
         self.btn_frame = ctk.CTkFrame(self, fg_color="transparent")
-        self.btn_frame.grid(row=2, column=0, pady=10, sticky="ew") 
-
-        # --- CENTRALIZAÇÃO E NOVO BOTÃO ---
+        self.btn_frame.grid(row=2, column=0, pady=10, sticky="ew")
         self.btn_frame.grid_columnconfigure(0, weight=1)
         self.btn_frame.grid_columnconfigure(4, weight=1)
-
         ctk.CTkButton(self.btn_frame, text="Criar Compra", command=self.criar_compra).grid(
             row=0, column=1, padx=10, pady=0)
-        
         ctk.CTkButton(self.btn_frame, text="Apagar Compra", command=self.delete_purchase_entry).grid(
             row=0, column=2, padx=10, pady=0)
-
         ctk.CTkButton(self.btn_frame, text="Exportar para Excel", fg_color="#27AE60", command=self.export_to_excel).grid(
             row=0, column=3, padx=10, pady=0)
-        
         self.load_purchases()
 
     def create_search_form(self):
-        """Cria o campo de busca e botão."""
         self.search_frame = ctk.CTkFrame(self, fg_color="transparent")
         self.search_frame.grid(row=0, column=0, sticky="ew", padx=10, pady=(10, 5))
         self.search_frame.grid_columnconfigure(0, weight=1)
-        
-        # Campo de entrada
         self.entry_search = ctk.CTkEntry(self.search_frame, placeholder_text="Buscar por Cliente, CPF ou Data", width=300)
         self.entry_search.grid(row=0, column=0, padx=(0, 10), sticky="w")
-        
-        # Botão de Busca
         ctk.CTkButton(self.search_frame, text="Filtrar", command=self.filter_purchases).grid(row=0, column=1, padx=(0, 10))
-        
-        # Botão de Limpar
         ctk.CTkButton(self.search_frame, text="Limpar", command=self.clear_filter).grid(row=0, column=2)
-        
-        # Permite buscar ao pressionar Enter
         self.entry_search.bind('<Return>', lambda event: self.filter_purchases())
 
     def filter_purchases(self):

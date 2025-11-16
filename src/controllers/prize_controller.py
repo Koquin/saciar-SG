@@ -16,7 +16,6 @@ def get_prizes():
             return data
         else:
             print(f"Erro ao buscar prêmios via API: {response.status_code} - {response.text}")
-            # Retorna lista padrão apenas se não conseguir buscar do backend
             return [
                 {"pontos": 3, "premio": "Desconto de 10%"},
                 {"pontos": 6, "premio": "Desconto de 30%"},
