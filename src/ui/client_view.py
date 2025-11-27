@@ -107,10 +107,19 @@ class ClientView(ctk.CTkFrame):
             item_id = selected[0]
             values = self.tree.item(item_id, 'values')
             if values:
-                id = values[0] 
+                # localizar pelo telefone em vez do id (id pode não estar presente)
                 print("Valores do item selecionado:", values)
+                telefone = None
+                try:
+                    cols = list(self.tree['columns'])
+                    tel_index = cols.index('telefone')
+                    telefone = values[tel_index]
+                except Exception:
+                    # fallback: normalmente telefone fica no índice 2
+                    telefone = values[2] if len(values) > 2 else values[0]
+
                 for i, client in enumerate(self.client_data):
-                    if client.get('id') == id:
+                    if client.get('telefone') == telefone:
                         self.selected_client_index = i
                         print("Cliente selecionado:", client)
                         return
