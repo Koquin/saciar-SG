@@ -32,14 +32,13 @@ class PurchaseView(ctk.CTkFrame):
         self.search_frame = ctk.CTkFrame(self, fg_color="transparent")
         self.search_frame.grid(row=0, column=0, sticky="ew", padx=10, pady=(10, 5))
         self.search_frame.grid_columnconfigure(0, weight=1)
-        self.entry_search = ctk.CTkEntry(self.search_frame, placeholder_text="Buscar por Cliente, CPF ou Data", width=300)
+        self.entry_search = ctk.CTkEntry(self.search_frame, placeholder_text="Buscar por Cliente ou Telefone", width=300)
         self.entry_search.grid(row=0, column=0, padx=(0, 10), sticky="w")
         ctk.CTkButton(self.search_frame, text="Filtrar", command=self.filter_purchases).grid(row=0, column=1, padx=(0, 10))
         ctk.CTkButton(self.search_frame, text="Limpar", command=self.clear_filter).grid(row=0, column=2)
         self.entry_search.bind('<Return>', lambda event: self.filter_purchases())
 
     def filter_purchases(self):
-        """Chama a função de busca e recarrega a tabela com os resultados."""
         query = self.entry_search.get().strip()
         try:
             self.purchase_data = search_purchases(query)
@@ -48,13 +47,10 @@ class PurchaseView(ctk.CTkFrame):
             messagebox.showerror("Erro de Filtro", f"Falha ao filtrar compras: {e}")
 
     def clear_filter(self):
-        """Limpa o campo de busca e recarrega todas as compras."""
         self.entry_search.delete(0, 'end')
         self.load_purchases() 
 
     def export_to_excel(self):
-        """Exporta os dados da tabela de compras para um arquivo CSV, formatando a data."""
-        
         if not self.purchase_data:
             messagebox.showwarning("Exportação", "Não há dados de compra para exportar.")
             return
@@ -96,7 +92,7 @@ class PurchaseView(ctk.CTkFrame):
 
                     row = [
                         compra.get("cliente", "N/A"),
-                        compra.get("cpf", "N/A"),
+                        compra.get("telefone", "N/A"),
                         valor_formatado,
                         data_formatada, 
                         pontos,
@@ -110,7 +106,6 @@ class PurchaseView(ctk.CTkFrame):
             messagebox.showerror("Erro de Exportação", f"Ocorreu um erro ao salvar o arquivo: {e}")
 
     def delete_purchase_entry(self):
-        """Obtém a compra selecionada e chama a função de deleção."""
         selected_item = self.tree.focus()
         
         if not selected_item:
@@ -119,11 +114,11 @@ class PurchaseView(ctk.CTkFrame):
 
         values = self.tree.item(selected_item, 'values')
         
-        purchase_id = values[0]  # ID é a primeira coluna (oculta)
-        cpf = values[2]  # CPF agora é o índice 2
-        data_hora = values[4]  # Data agora é o índice 4
+        purchase_id = values[0]
+        telefone = values[2]
+        data_hora = values[4]
         
-        if messagebox.askyesno("Confirmação", f"Tem certeza que deseja apagar a compra de {cpf} na data/hora {data_hora}?"):
+        if messagebox.askyesno("Confirmação", f"Tem certeza que deseja apagar a compra de {telefone} na data/hora {data_hora}?"):
             try:
                 deleted_count = delete_purchase(purchase_id)
                 
@@ -136,7 +131,6 @@ class PurchaseView(ctk.CTkFrame):
                 messagebox.showerror("Erro", f"Ocorreu um erro ao apagar: {e}")
 
     def create_purchase_table(self):
-        """Tabela de histórico de compras"""
         style = ttk.Style()
         style.theme_use("default")
         style.configure("Treeview.Heading", font=("Helvetica", 14, "bold"))
@@ -145,24 +139,23 @@ class PurchaseView(ctk.CTkFrame):
 
         self.tree = ttk.Treeview(
             self,
-            columns=("id", "cliente", "cpf", "valor", "data", "pontos_ganhos", "delivery_status"),
+            columns=("id", "cliente", "telefone", "valor", "data", "pontos_ganhos", "delivery_status"),
             show="headings",
             selectmode="browse",
         )
-        # ID é uma coluna oculta que usaremos para deleção
         self.tree.heading("id", text="ID")
-        self.tree.column("id", width=0, stretch=False)  # Oculta a coluna
+        self.tree.column("id", width=0, stretch=False)
         
         self.tree.heading("cliente", text="CLIENTE")
-        self.tree.heading("cpf", text="CPF")
+        self.tree.heading("telefone", text="TELEFONE")
         self.tree.heading("valor", text="VALOR (R$)")
         self.tree.heading("data", text="DATA")
         self.tree.heading("pontos_ganhos", text="PONTOS GANHOS")
         self.tree.heading("delivery_status", text="DELIVERY")
 
         self.tree.column("cliente", width=180, anchor='w')
-        self.tree.column("cpf", width=120, anchor='center')
-        self.tree.column("valor", width=100, anchor='e')
+        self.tree.column("telefone", width=150, anchor='center')
+        self.tree.column("valor", width=100, anchor='center')
         self.tree.column("data", width=150, anchor='center')
         self.tree.column("pontos_ganhos", width=80, anchor='center')
         self.tree.column("delivery_status", width=80, anchor='center')
@@ -170,7 +163,6 @@ class PurchaseView(ctk.CTkFrame):
         self.tree.grid(row=1, column=0, sticky="nsew", padx=10, pady=10)
 
     def load_purchases(self):
-        """Carrega todas as compras do backend."""
         try:
             self.purchase_data = get_purchases() 
             self.display_purchases(self.purchase_data)
@@ -178,7 +170,6 @@ class PurchaseView(ctk.CTkFrame):
             messagebox.showerror("Erro de API", f"Falha ao carregar compras: {e}")
 
     def display_purchases(self, purchases):
-        """Preenche a tabela com os dados das compras"""
         self.tree.delete(*self.tree.get_children())
         for compra in purchases:
             valor_formatado = f"{compra.get('valor', 0.0):.2f}"
@@ -195,9 +186,9 @@ class PurchaseView(ctk.CTkFrame):
                 pass 
 
             self.tree.insert("", "end", values=(
-                compra.get("id", ""),  # ID oculto
+                compra.get("id", ""),
                 compra.get("cliente", "N/A"),
-                compra.get("cpf", "N/A"),
+                compra.get("telefone", "N/A"),
                 valor_formatado,
                 data_exibicao, 
                 pontos,
@@ -205,8 +196,6 @@ class PurchaseView(ctk.CTkFrame):
             ))
 
     def criar_compra(self):
-        """Abre o formulário para registrar uma nova compra com opção Delivery."""
-        
         popup = ctk.CTkToplevel(self.controller)        
         popup.title("Registrar Compra")
         popup.geometry("350x300")
@@ -215,9 +204,9 @@ class PurchaseView(ctk.CTkFrame):
         popup.after(250, popup.grab_set)
         popup.after(250, popup.focus_force)
 
-        ctk.CTkLabel(popup, text="CPF do Cliente (Opcional):").pack(pady=(10, 5))
-        entry_cpf = ctk.CTkEntry(popup, width=300)
-        entry_cpf.pack(pady=5)
+        ctk.CTkLabel(popup, text="Telefone do Cliente (Opcional):").pack(pady=(10, 5))
+        entry_telefone = ctk.CTkEntry(popup, width=300)
+        entry_telefone.pack(pady=5)
 
         ctk.CTkLabel(popup, text="Valor da Compra (R$):").pack(pady=5)
         entry_valor = ctk.CTkEntry(popup, width=300)
@@ -237,7 +226,7 @@ class PurchaseView(ctk.CTkFrame):
 
         def salvar_compra():
             try:
-                cpf = entry_cpf.get().strip()
+                telefone = entry_telefone.get().strip()
                 valor = float(entry_valor.get() or 0)
                 is_delivery = self.check_delivery_var.get()
                 
@@ -253,7 +242,7 @@ class PurchaseView(ctk.CTkFrame):
             
             compra = {
                 "cliente": "Cliente Registrado",
-                "cpf": cpf,
+                "telefone": telefone,
                 "valor": valor,
                 "is_delivery": is_delivery,
                 "data": data_hora_agora.strftime("%Y-%m-%d %H:%M:%S")            

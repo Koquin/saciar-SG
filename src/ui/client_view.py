@@ -34,28 +34,26 @@ class ClientView(ctk.CTkFrame):
         self.search_frame = ctk.CTkFrame(self, fg_color="transparent")
         self.search_frame.grid(row=0, column=0, sticky="ew", padx=10, pady=(10, 5))
         self.search_frame.grid_columnconfigure(0, weight=1)
-        self.entry_search = ctk.CTkEntry(self.search_frame, placeholder_text="Buscar por Nome, CPF ou Telefone", width=300)
+        self.entry_search = ctk.CTkEntry(self.search_frame, placeholder_text="Buscar por Nome ou Telefone", width=300)
         self.entry_search.grid(row=0, column=0, padx=(0, 10), sticky="w")
         ctk.CTkButton(self.search_frame, text="Filtrar", command=self.filter_clients).grid(row=0, column=1, padx=(0, 10))
         ctk.CTkButton(self.search_frame, text="Limpar", command=self.clear_filter).grid(row=0, column=2)
         self.entry_search.bind('<Return>', lambda event: self.filter_clients())
 
     def filter_clients(self):
-        """Chama a função de busca e recarrega a tabela com os resultados."""
         query = self.entry_search.get().strip()
         try:
             self.client_data = search_clients(query)
+            print("Clientes filtrados:", self.client_data)
             self.display_clients(self.client_data)
         except Exception as e:
             messagebox.showerror("Erro de Filtro", f"Falha ao filtrar clientes: {e}")
 
     def clear_filter(self):
-        """Limpa o campo de busca e recarrega todos os clientes."""
         self.entry_search.delete(0, 'end')
         self.load_clients() 
 
     def create_client_table(self):
-        """Tabela de clientes"""
         style = ttk.Style()
         style.theme_use("default")
         style.configure("Treeview.Heading", font=("Helvetica", 14, "bold"))
@@ -64,29 +62,25 @@ class ClientView(ctk.CTkFrame):
 
         self.tree = ttk.Treeview(
             self,
-            columns=("id", "nome", "cpf", "telefone", "pontos"),
+            columns=("nome", "telefone", "pontos", "troco"),
             show="headings",
             selectmode="browse",
         )
-        self.tree.heading("id", text="ID")
         self.tree.heading("nome", text="NOME")
-        self.tree.heading("cpf", text="CPF")
         self.tree.heading("telefone", text="TELEFONE")
         self.tree.heading("pontos", text="PONTOS")
+        self.tree.heading("troco", text="TROCO")
 
-        # Ocultar a coluna ID (existirá nos dados mas não será exibida)
-        self.tree.column("id", width=0, anchor='center', stretch=False, minwidth=0)
         self.tree.column("nome", width=200, anchor='w')
-        self.tree.column("cpf", width=120, anchor='center')
-        self.tree.column("telefone", width=120, anchor='center')
-        self.tree.column("pontos", width=80, anchor='center')
+        self.tree.column("telefone", width=150, anchor='center')
+        self.tree.column("pontos", width=100, anchor='center')
+        self.tree.column("troco", width=100, anchor='center')
         
-        self.tree.grid(row=1, column=0, sticky="nsew", padx=10, pady=10) # row=1
+        self.tree.grid(row=1, column=0, sticky="nsew", padx=10, pady=10)
 
         self.tree.bind("<<TreeviewSelect>>", self.on_select)
 
     def load_clients(self):
-        """Carrega todos os clientes do backend."""
         try:
             self.client_data = get_clients()
             self.display_clients(self.client_data)
@@ -95,20 +89,18 @@ class ClientView(ctk.CTkFrame):
             messagebox.showerror("Erro de API", f"Falha ao carregar clientes: {e}")
 
     def display_clients(self, clients):
-        """Preenche a tabela com os dados dos clientes"""
         self.tree.delete(*self.tree.get_children())
         for client in clients:
             pontos = client.get("pontos", 0)
+            troco = client.get("troco", 0.0)
             self.tree.insert("", "end", values=(
-                client["id"],
                 client["nome"],
-                client["cpf"],
                 client["telefone"],
                 pontos,
+                troco,
             ))
 
     def on_select(self, event):
-        """Atualiza o índice do cliente selecionado"""
         selected = self.tree.selection()
         if selected:
             print("Item selecionado na tabela:", selected)
@@ -126,13 +118,12 @@ class ClientView(ctk.CTkFrame):
         self.selected_client_index = None
 
     def handle_client_callback(self, client_data, mode):
-        """Processa o retorno do ClientForm após Salvar/Atualizar"""
         if mode == "Cadastrar":
             result = post_client(client_data)
             if result:
                 messagebox.showinfo("Sucesso", "Cliente cadastrado com sucesso!")
             else:
-                messagebox.showerror("Erro", "Falha ao cadastrar. O CPF já pode existir ou houve um erro no servidor.")
+                messagebox.showerror("Erro", "Falha ao cadastrar. O telefone já pode existir ou houve um erro no servidor.")
         elif mode == "Atualizar":
             result = put_client(client_data)
             if result:
@@ -144,7 +135,6 @@ class ClientView(ctk.CTkFrame):
         self.selected_client_index = None
 
     def cadastrar_cliente(self):
-        """Abre o formulário de cadastro"""
         ClientForm(self.controller,
                    callback=lambda data: self.handle_client_callback(data, "Cadastrar"), 
                    mode="Cadastrar")
@@ -168,7 +158,7 @@ class ClientView(ctk.CTkFrame):
             return
 
         client = self.client_data[self.selected_client_index]
-        confirm = messagebox.askyesno("Remover", f"Confirmar a remoção de {client['nome']} (CPF: {client['cpf']})?")
+        confirm = messagebox.askyesno("Remover", f"Confirmar a remoção de {client['nome']} (Telefone: {client['telefone']})?")
         
         if confirm:
             deleted = delete_client(client["id"])
@@ -183,7 +173,6 @@ class ClientView(ctk.CTkFrame):
 
             
     def editar_premios(self):
-        """Busca os prêmios atuais e abre o formulário modal de edição."""
         try:
             prizes_data = get_prizes() 
             
@@ -193,7 +182,6 @@ class ClientView(ctk.CTkFrame):
             messagebox.showerror("Erro de API", f"Falha ao carregar a lista de prêmios: {e}")
 
     def export_to_excel(self):
-        """Exporta os dados da tabela de clientes para um arquivo CSV (compatível com Excel)."""
         if not self.client_data:
             messagebox.showwarning("Exportar", "Nenhum cliente para exportar!")
             return
@@ -208,7 +196,6 @@ class ClientView(ctk.CTkFrame):
             return 
             
         try:
-            # Excluir a coluna 'id' dos headers exportados (é oculta)
             headers = [self.tree.heading(col)['text'] for col in self.tree['columns'] if col != 'id']
             
             with open(file_path, 'w', newline='', encoding='utf-8') as file:
@@ -218,9 +205,9 @@ class ClientView(ctk.CTkFrame):
                 for client in self.client_data:
                     row = [
                         client.get("nome", "N/A"),
-                        client.get("cpf", "N/A"),
                         client.get("telefone", "N/A"),
-                        client.get("pontos", 0)
+                        client.get("pontos", 0),
+                        client.get("troco", 0.0)
                     ]
                     writer.writerow(row)
             

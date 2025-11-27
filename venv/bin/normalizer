@@ -1,5 +1,5 @@
 #!/bin/sh
-'''exec' "/home/durag/Documents/Iago/Somniorum/Projetos/Saciar/Saciar - Sistema de Gerenciamento/venv/bin/python3" "$0" "$@"
+'''exec' "/home/durag/Documents/Iago/Projetos/Saciar/Saciar - Sistema de Gerenciamento/venv/bin/python3" "$0" "$@"
 ' '''
 # -*- coding: utf-8 -*-
 import re

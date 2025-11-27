@@ -3,7 +3,7 @@ import requests
 BASE_URL = "http://localhost:8000"
 
 def get_clients():
-    print("No api_utils, metodo get_clients")
+    print("No cliente controller, metodo get_clients")
     try:
         request = requests.get(f"{BASE_URL}/clientes")
         if request.status_code == 200:
@@ -17,7 +17,7 @@ def get_clients():
 
 
 def search_clients(query: str):
-    print("No api_utils, metodo search_clients, variaveis: ", query)
+    print("No cliente controller, metodo search_clients, variaveis: ", query)
     try:
         params = {"q": query} if query else {}
         response = requests.get(f"{BASE_URL}/clientes/search", params=params)
@@ -35,7 +35,6 @@ def post_client(client):
     try:
         novo_cliente = {
             "nome": client.get("nome", ""),
-            "cpf": client.get("cpf", ""),
             "telefone": client.get("telefone", ""),
             "pontos": client.get("pontos", 0)
         }

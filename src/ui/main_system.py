@@ -2,6 +2,7 @@
 import customtkinter as ctk
 from .client_view import ClientView
 from .purchase_view import PurchaseView
+from .redeem_view import RedeemView
 
 class MainSystem(ctk.CTkFrame):
     def __init__(self, master, app_root):
@@ -29,6 +30,8 @@ class MainSystem(ctk.CTkFrame):
             row=1, column=0, padx=20, pady=10)
         ctk.CTkButton(self.sidebar_frame, text="Compras", command=lambda: self.show_view("compras")).grid(
             row=2, column=0, padx=20, pady=10)
+        ctk.CTkButton(self.sidebar_frame, text="Resgates", command=lambda: self.show_view("resgates")).grid(
+            row=3, column=0, padx=20, pady=10)
         ctk.CTkButton(self.sidebar_frame, text="Sair", fg_color="red", command=self.app_root.destroy).grid(
             row=5, column=0, padx=20, pady=10)
 
@@ -44,14 +47,14 @@ class MainSystem(ctk.CTkFrame):
         elif view_name == "compras":
             self.app_root.title("SACIAR - Histórico de Compras")
             self._frame = PurchaseView(self.main_view_frame, self.app_root)
+        elif view_name == "resgates":
+            self.app_root.title("SACIAR - Gerenciamento de Resgates")
+            self._frame = RedeemView(self.main_view_frame, self.app_root)
         if self._frame:
             self._frame.grid(row=0, column=0, sticky="nsew", padx=20, pady=20)
 
 
-# O bloco de teste no final foi atualizado para usar a nova classe MainApp,
-# garantindo que a estrutura de autenticação (mesmo que bypassada) seja seguida.
 if __name__ == "__main__":
-    # Teste rápido simulando o MockApp
     class MockApp(ctk.CTk):
         def __init__(self):
             super().__init__()

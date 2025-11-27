@@ -37,12 +37,12 @@ def search_purchases(query):
         return []
 
 def post_purchase(purchase):
-    cpf = purchase.get("cpf", "").strip() 
+    telefone = purchase.get("telefone", "").strip() 
     valor = purchase.get("valor", 0.0)
     is_delivery = purchase.get("is_delivery", False)
     
     payload = {
-        "cpf": cpf or "AVULSO",
+        "telefone": telefone or "AVULSO",
         "valor": valor,
         "is_delivery": is_delivery,
         'isFromClient': False,
