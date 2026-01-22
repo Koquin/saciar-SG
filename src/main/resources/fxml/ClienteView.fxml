@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.saciar.controller.ClienteController"
+      spacing="15" styleClass="view-container">
+    
+    <padding>
+        <Insets top="15" right="15" bottom="15" left="15"/>
+    </padding>
+    
+    <!-- Cabeçalho -->
+    <HBox alignment="CENTER_LEFT" spacing="10">
+        <Label text="Gerenciamento de Clientes" styleClass="view-title">
+            <font>
+                <Font name="System Bold" size="24"/>
+            </font>
+        </Label>
+    </HBox>
+    
+    <!-- Barra de busca -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <TextField fx:id="searchField" promptText="Buscar por nome ou telefone..."
+                   HBox.hgrow="ALWAYS" prefHeight="35"/>
+        <Button text="🔍 Filtrar" onAction="#handleSearch" 
+                styleClass="primary-button" prefHeight="35"/>
+        <Button text="✖ Limpar" onAction="#handleClearFilter" 
+                styleClass="secondary-button" prefHeight="35"/>
+    </HBox>
+    
+    <!-- Tabela de clientes -->
+    <TableView fx:id="clienteTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="nomeColumn" text="NOME" prefWidth="300"/>
+            <TableColumn fx:id="telefoneColumn" text="TELEFONE" prefWidth="150"/>
+            <TableColumn fx:id="pontosColumn" text="PONTOS" prefWidth="100"/>
+            <TableColumn fx:id="trocoColumn" text="TROCO" prefWidth="100"/>
+        </columns>
+        <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+        </columnResizePolicy>
+    </TableView>
+    
+    <!-- Botões de ação -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Button fx:id="btnCadastrar" text="Cadastrar Cliente" 
+                onAction="#handleCadastrar"
+                styleClass="success-button" prefHeight="40" prefWidth="180"/>
+        <Button fx:id="btnAtualizar" text="Atualizar Cliente" 
+                onAction="#handleAtualizar"
+                styleClass="warning-button" prefHeight="40" prefWidth="180"/>
+        <Button fx:id="btnRemover" text="Remover Cliente" 
+                onAction="#handleRemover"
+                styleClass="danger-button" prefHeight="40" prefWidth="180"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button fx:id="btnExportar" text="Exportar Excel" 
+                onAction="#handleExportar"
+                styleClass="info-button" prefHeight="40" prefWidth="180"/>
+    </HBox>
+    
+</VBox>

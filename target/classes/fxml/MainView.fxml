@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.saciar.controller.MainController"
+            stylesheets="@../css/styles.css" fx:id="mainPane">
+    
+    <!-- Sidebar esquerda -->
+    <left>
+        <VBox styleClass="sidebar" prefWidth="200" spacing="10">
+            <padding>
+                <Insets top="20" right="15" bottom="20" left="15"/>
+            </padding>
+            
+            <!-- Logo/Título -->
+            <VBox alignment="CENTER" spacing="5" VBox.vgrow="NEVER">
+                <Label text="SACIAR" styleClass="app-title">
+                    <font>
+                        <Font name="System Bold" size="28"/>
+                    </font>
+                </Label>
+                <Label text="Sistema de Gerenciamento" styleClass="app-subtitle">
+                    <font>
+                        <Font size="10"/>
+                    </font>
+                </Label>
+            </VBox>
+            
+            <Separator/>
+            
+            <!-- Botões de navegação -->
+            <VBox spacing="10" VBox.vgrow="ALWAYS">
+                <VBox.margin>
+                    <Insets top="20"/>
+                </VBox.margin>
+                
+                <Button fx:id="btnClientes" text="Clientes" 
+                        onAction="#handleClientesClick"
+                        styleClass="nav-button" maxWidth="Infinity"
+                        prefHeight="45"/>
+                
+                <Button fx:id="btnCompras" text="Compras" 
+                        onAction="#handleComprasClick"
+                        styleClass="nav-button" maxWidth="Infinity"
+                        prefHeight="45"/>
+                
+                <Button fx:id="btnResgates" text="Resgates" 
+                        onAction="#handleResgatesClick"
+                        styleClass="nav-button" maxWidth="Infinity"
+                        prefHeight="45"/>
+            </VBox>
+            
+            <!-- Botão Sair -->
+            <Button text="🚪 Sair" onAction="#handleSairClick"
+                    styleClass="exit-button" maxWidth="Infinity"
+                    prefHeight="45"/>
+        </VBox>
+    </left>
+    
+    <!-- Área de conteúdo principal -->
+    <center>
+        <StackPane fx:id="contentPane" styleClass="content-pane">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+        </StackPane>
+    </center>
+    
+</BorderPane>

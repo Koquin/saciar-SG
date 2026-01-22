@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.saciar.controller.CompraController"
+      spacing="15" styleClass="view-container">
+    
+    <padding>
+        <Insets top="15" right="15" bottom="15" left="15"/>
+    </padding>
+    
+    <!-- Cabeçalho -->
+    <HBox alignment="CENTER_LEFT" spacing="10">
+        <Label text="Gerenciamento de Compras" styleClass="view-title">
+            <font>
+                <Font name="System Bold" size="24"/>
+            </font>
+        </Label>
+    </HBox>
+    
+    <!-- Barra de busca -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <TextField fx:id="searchField" promptText="Buscar por cliente, telefone ou data..."
+                   HBox.hgrow="ALWAYS" prefHeight="35"/>
+        <Button text="🔍 Filtrar" onAction="#handleSearch" 
+                styleClass="primary-button" prefHeight="35"/>
+        <Button text="✖ Limpar" onAction="#handleClearFilter" 
+                styleClass="secondary-button" prefHeight="35"/>
+    </HBox>
+    
+    <!-- Tabela de compras -->
+    <TableView fx:id="compraTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="clienteColumn" text="CLIENTE" prefWidth="250"/>
+            <TableColumn fx:id="telefoneColumn" text="TELEFONE" prefWidth="150"/>
+            <TableColumn fx:id="valorColumn" text="VALOR (R$)" prefWidth="120"/>
+            <TableColumn fx:id="pontosColumn" text="PONTOS" prefWidth="100"/>
+            <TableColumn fx:id="dataColumn" text="DATA" prefWidth="180"/>
+        </columns>
+        <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+        </columnResizePolicy>
+    </TableView>
+    
+    <!-- Botões de ação -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Button fx:id="btnRegistrar" text="Registrar Compra" 
+                onAction="#handleRegistrar"
+                styleClass="success-button" prefHeight="40" prefWidth="180"/>
+        <Button fx:id="btnRemover" text="Remover Compra" 
+                onAction="#handleRemover"
+                styleClass="danger-button" prefHeight="40" prefWidth="180"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button fx:id="btnExportar" text="Exportar Excel" 
+                onAction="#handleExportar"
+                styleClass="info-button" prefHeight="40" prefWidth="180"/>
+    </HBox>
+    
+</VBox>
