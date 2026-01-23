@@ -4,6 +4,7 @@ com/saciar/controller/ResgateController.class
 com/saciar/service/ClienteService$1.class
 com/saciar/service/ResgateService$3.class
 com/saciar/service/ResgateService.class
+com/saciar/controller/LoginController.class
 com/saciar/SaciarApplication.class
 com/saciar/service/ResgateService$1.class
 com/saciar/service/CompraService$1.class
@@ -12,8 +13,10 @@ com/saciar/controller/CompraController.class
 com/saciar/service/ClienteService$2.class
 com/saciar/service/HttpClient.class
 com/saciar/controller/MainController.class
+com/saciar/service/ResgateService$4.class
 com/saciar/service/ResgateService$2.class
 com/saciar/controller/ClienteController.class
+com/saciar/controller/PremiosDialog.class
 com/saciar/service/HttpClient$CachedResponse.class
 com/saciar/controller/CompraDialog.class
 com/saciar/model/Compra.class

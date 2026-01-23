@@ -45,7 +45,7 @@ public class SaciarApplication extends Application {
                         primaryStage.setMinWidth(1000);
                         primaryStage.setMinHeight(600);
                         try {
-                            primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/images/icon.png")));
+                            primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/assets/logoSaciar.jpeg")));
                         } catch (Exception e) {
                             logger.warn("Ícone não encontrado");
                         }
