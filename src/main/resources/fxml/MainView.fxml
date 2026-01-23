@@ -55,7 +55,7 @@
             </VBox>
             
             <!-- Botão Sair -->
-            <Button text="🚪 Sair" onAction="#handleSairClick"
+            <Button text="Sair" onAction="#handleSairClick"
                     styleClass="exit-button" maxWidth="Infinity"
                     prefHeight="45"/>
         </VBox>

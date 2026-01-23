@@ -206,7 +206,7 @@ public class ClienteController {
             showWarning("Selecione um cliente para remover!");
             return;
         }
-        
+        System.out.println("Removendo cliente: " + clienteTable.getSelectionModel().getSelectedItem().toString());
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmar Remoção");
         alert.setHeaderText("Remover cliente?");
@@ -361,6 +361,25 @@ class ClienteDialog extends Dialog<Cliente> {
                 }
             }
             return null;
+        });
+        
+        // Regras de telefone: só números, máximo 11 dígitos
+        telefoneField.textProperty().addListener((obs, old, val) -> {
+            String onlyDigits = val.replaceAll("\\D", "");
+            if (onlyDigits.length() > 11) {
+                telefoneField.setText("");
+            } else {
+                telefoneField.setText(onlyDigits);
+            }
+        });
+        // Regras de pontos: só números, máximo 10
+        pontosField.textProperty().addListener((obs, old, val) -> {
+            String onlyDigits = val.replaceAll("\\D", "");
+            if (onlyDigits.length() > 2 || (onlyDigits.length() == 2 && Integer.parseInt(onlyDigits) > 10)) {
+                pontosField.setText("");
+            } else {
+                pontosField.setText(onlyDigits);
+            }
         });
     }
 }

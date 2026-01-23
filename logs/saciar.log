@@ -28,3 +28,419 @@
 2026-01-22 20:03:50.852 [JavaFX Application Thread] INFO  c.saciar.controller.MainController - View de clientes carregada
 2026-01-22 20:03:50.852 [Thread-7] INFO  com.saciar.service.HttpClient - GET http://192.168.0.110:8000/clientes
 2026-01-22 20:03:51.158 [Thread-7] INFO  com.saciar.service.ClienteService - 3 clientes encontrados
+2026-01-22 20:11:14.880 [Thread-8] INFO  com.saciar.service.CompraService - Buscando todas as compras
+2026-01-22 20:11:14.882 [JavaFX Application Thread] INFO  c.saciar.controller.MainController - View de compras carregada
+2026-01-22 20:11:14.915 [Thread-8] INFO  com.saciar.service.HttpClient - GET http://192.168.0.110:8000/purchase/
+2026-01-22 20:11:15.466 [Thread-9] INFO  com.saciar.service.ResgateService - Buscando todos os resgates
+2026-01-22 20:11:15.466 [Thread-10] INFO  com.saciar.service.ResgateService - Buscando prêmios disponíveis
+2026-01-22 20:11:15.467 [JavaFX Application Thread] INFO  c.saciar.controller.MainController - View de resgates carregada
+2026-01-22 20:11:15.467 [Thread-9] INFO  com.saciar.service.HttpClient - GET http://192.168.0.110:8000/redeems/
+2026-01-22 20:11:15.467 [Thread-10] INFO  com.saciar.service.HttpClient - GET http://192.168.0.110:8000/prizes
+2026-01-22 20:11:15.642 [Thread-9] INFO  com.saciar.service.ResgateService - 0 resgates encontrados
+2026-01-22 20:11:15.694 [Thread-10] INFO  com.saciar.service.ResgateService - 4 prêmios encontrados
+2026-01-22 20:11:15.694 [Thread-10] INFO  c.s.controller.ResgateController - 4 prêmios carregados
+2026-01-22 20:11:15.985 [Thread-8] INFO  com.saciar.service.CompraService - 0 compras encontradas
+2026-01-22 20:11:16.157 [Thread-11] INFO  com.saciar.service.ClienteService - Buscando todos os clientes
+2026-01-22 20:11:16.158 [Thread-11] INFO  com.saciar.service.HttpClient - GET http://192.168.0.110:8000/clientes
+2026-01-22 20:11:16.158 [JavaFX Application Thread] INFO  c.saciar.controller.MainController - View de clientes carregada
+2026-01-22 20:11:16.269 [Thread-11] INFO  com.saciar.service.ClienteService - 3 clientes encontrados
+2026-01-22 20:11:30.017 [Thread-12] INFO  com.saciar.service.CompraService - Buscando todas as compras
+2026-01-22 20:11:30.018 [Thread-12] INFO  com.saciar.service.HttpClient - Cache hit: /purchase/
+2026-01-22 20:11:30.019 [JavaFX Application Thread] INFO  c.saciar.controller.MainController - View de compras carregada
+2026-01-22 20:11:30.024 [Thread-12] INFO  com.saciar.service.CompraService - 0 compras encontradas
+2026-01-22 20:11:34.300 [Thread-13] INFO  com.saciar.service.ResgateService - Buscando todos os resgates
+2026-01-22 20:11:34.300 [Thread-13] INFO  com.saciar.service.HttpClient - Cache hit: /redeems/
+2026-01-22 20:11:34.300 [Thread-14] INFO  com.saciar.service.ResgateService - Buscando prêmios disponíveis
+2026-01-22 20:11:34.301 [Thread-14] INFO  com.saciar.service.HttpClient - Cache hit: /prizes
+2026-01-22 20:11:34.301 [JavaFX Application Thread] INFO  c.saciar.controller.MainController - View de resgates carregada
+2026-01-22 20:11:34.305 [Thread-13] INFO  com.saciar.service.ResgateService - 0 resgates encontrados
+2026-01-22 20:11:34.307 [Thread-14] INFO  com.saciar.service.ResgateService - 4 prêmios encontrados
+2026-01-22 20:11:34.307 [Thread-14] INFO  c.s.controller.ResgateController - 4 prêmios carregados
+2026-01-22 20:11:35.193 [Thread-15] INFO  com.saciar.service.ClienteService - Buscando todos os clientes
+2026-01-22 20:11:35.193 [Thread-15] INFO  com.saciar.service.HttpClient - Cache hit: /clientes
+2026-01-22 20:11:35.194 [JavaFX Application Thread] INFO  c.saciar.controller.MainController - View de clientes carregada
+2026-01-22 20:11:35.199 [Thread-15] INFO  com.saciar.service.ClienteService - 3 clientes encontrados
+2026-01-22 20:11:35.618 [Thread-16] INFO  com.saciar.service.CompraService - Buscando todas as compras
+2026-01-22 20:11:35.618 [Thread-16] INFO  com.saciar.service.HttpClient - Cache hit: /purchase/
+2026-01-22 20:11:35.619 [JavaFX Application Thread] INFO  c.saciar.controller.MainController - View de compras carregada
+2026-01-22 20:11:35.622 [Thread-16] INFO  com.saciar.service.CompraService - 0 compras encontradas
+2026-01-22 20:11:36.330 [Thread-17] INFO  com.saciar.service.ClienteService - Buscando todos os clientes
+2026-01-22 20:11:36.330 [JavaFX Application Thread] INFO  c.saciar.controller.MainController - View de clientes carregada
+2026-01-22 20:11:36.330 [Thread-17] INFO  com.saciar.service.HttpClient - Cache hit: /clientes
+2026-01-22 20:11:36.337 [Thread-17] INFO  com.saciar.service.ClienteService - 3 clientes encontrados
+2026-01-22 20:12:59.030 [Thread-18] INFO  com.saciar.service.ClienteService - Atualizando cliente: robert
+2026-01-22 20:12:59.042 [Thread-18] INFO  com.saciar.service.HttpClient - PUT http://192.168.0.110:8000/clientes/692a28caf818e19a1930aac3
+2026-01-22 20:12:59.108 [Thread-18] INFO  com.saciar.service.HttpClient - Cache invalidado para: clientes
+2026-01-22 20:12:59.108 [Thread-18] INFO  com.saciar.service.ClienteService - Cliente atualizado com sucesso
+2026-01-22 20:13:00.418 [Thread-19] INFO  com.saciar.service.ClienteService - Buscando todos os clientes
+2026-01-22 20:13:00.420 [Thread-19] INFO  com.saciar.service.HttpClient - GET http://192.168.0.110:8000/clientes
+2026-01-22 20:13:00.717 [Thread-19] INFO  com.saciar.service.ClienteService - 3 clientes encontrados
+2026-01-22 20:13:05.357 [Thread-20] INFO  com.saciar.service.ClienteService - Atualizando cliente: robert
+2026-01-22 20:13:05.359 [Thread-20] INFO  com.saciar.service.HttpClient - PUT http://192.168.0.110:8000/clientes/692a28caf818e19a1930aac3
+2026-01-22 20:13:05.576 [Thread-20] INFO  com.saciar.service.HttpClient - Cache invalidado para: clientes
+2026-01-22 20:13:05.576 [Thread-20] INFO  com.saciar.service.ClienteService - Cliente atualizado com sucesso
+2026-01-22 20:13:06.734 [Thread-21] INFO  com.saciar.service.ClienteService - Buscando todos os clientes
+2026-01-22 20:13:06.735 [Thread-21] INFO  com.saciar.service.HttpClient - GET http://192.168.0.110:8000/clientes
+2026-01-22 20:13:06.912 [Thread-21] INFO  com.saciar.service.ClienteService - 3 clientes encontrados
+2026-01-22 20:13:21.269 [Thread-22] INFO  com.saciar.service.ClienteService - Cadastrando cliente: teste
+2026-01-22 20:13:21.271 [Thread-22] INFO  com.saciar.service.HttpClient - POST http://192.168.0.110:8000/clientes
+2026-01-22 20:13:21.582 [Thread-22] INFO  com.saciar.service.HttpClient - Cache invalidado para: clientes
+2026-01-22 20:13:21.591 [Thread-22] ERROR com.saciar.service.ClienteService - Erro ao converter cliente: Unrecognized field "_id" (class com.saciar.model.Cliente), not marked as ignorable (8 known properties: "updated_at", "qtd_gasta", "nome", "telefone", "id", "troco", "pontos", "created_at"])
+ at [Source: UNKNOWN; byte offset: #UNKNOWN] (through reference chain: com.saciar.model.Cliente["_id"])
+2026-01-22 20:15:17.943 [Thread-23] INFO  com.saciar.service.ClienteService - Cadastrando cliente: teste
+2026-01-22 20:15:17.949 [Thread-23] INFO  com.saciar.service.HttpClient - POST http://192.168.0.110:8000/clientes
+2026-01-22 20:15:19.046 [Thread-23] ERROR com.saciar.service.HttpClient - Erro HTTP 403: {"detail":"Usuário já existe!"}
+2026-01-22 20:15:27.809 [Thread-24] INFO  com.saciar.service.ClienteService - Buscando todos os clientes
+2026-01-22 20:15:27.810 [Thread-24] INFO  com.saciar.service.HttpClient - GET http://192.168.0.110:8000/clientes
+2026-01-22 20:15:27.811 [JavaFX Application Thread] INFO  c.saciar.controller.MainController - View de clientes carregada
+2026-01-22 20:15:27.889 [Thread-24] INFO  com.saciar.service.ClienteService - 4 clientes encontrados
+2026-01-22 20:15:32.169 [Thread-25] INFO  com.saciar.service.ClienteService - Removendo cliente ID: 6972af110e13a0a97386806c
+2026-01-22 20:15:32.170 [Thread-25] INFO  com.saciar.service.HttpClient - DELETE http://192.168.0.110:8000/clientes/6972af110e13a0a97386806c
+2026-01-22 20:15:32.192 [Thread-25] INFO  com.saciar.service.HttpClient - Cache invalidado para: clientes
+2026-01-22 20:15:32.192 [Thread-25] INFO  com.saciar.service.ClienteService - Cliente removido com sucesso
+2026-01-22 20:15:33.375 [Thread-26] INFO  com.saciar.service.ClienteService - Buscando todos os clientes
+2026-01-22 20:15:33.376 [Thread-26] INFO  com.saciar.service.HttpClient - GET http://192.168.0.110:8000/clientes
+2026-01-22 20:15:33.442 [Thread-26] INFO  com.saciar.service.ClienteService - 3 clientes encontrados
+2026-01-22 20:15:42.613 [Thread-27] INFO  com.saciar.service.ClienteService - Cadastrando cliente: teste
+2026-01-22 20:15:42.615 [Thread-27] INFO  com.saciar.service.HttpClient - POST http://192.168.0.110:8000/clientes
+2026-01-22 20:15:42.692 [Thread-27] INFO  com.saciar.service.HttpClient - Cache invalidado para: clientes
+2026-01-22 20:15:42.694 [Thread-27] ERROR com.saciar.service.ClienteService - Erro ao converter cliente: Unrecognized field "_id" (class com.saciar.model.Cliente), not marked as ignorable (8 known properties: "updated_at", "qtd_gasta", "nome", "telefone", "id", "troco", "pontos", "created_at"])
+ at [Source: UNKNOWN; byte offset: #UNKNOWN] (through reference chain: com.saciar.model.Cliente["_id"])
+2026-01-22 20:15:46.682 [Thread-28] INFO  com.saciar.service.ClienteService - Buscando todos os clientes
+2026-01-22 20:15:46.683 [Thread-28] INFO  com.saciar.service.HttpClient - GET http://192.168.0.110:8000/clientes
+2026-01-22 20:15:46.684 [JavaFX Application Thread] INFO  c.saciar.controller.MainController - View de clientes carregada
+2026-01-22 20:15:46.964 [Thread-28] INFO  com.saciar.service.ClienteService - 4 clientes encontrados
+2026-01-22 20:18:33.261 [JavaFX Application Thread] INFO  com.saciar.SaciarApplication - Encerrando aplicação...
+2026-01-22 20:18:42.202 [JavaFX Application Thread] INFO  com.saciar.SaciarApplication - Iniciando aplicação SACIAR...
+2026-01-22 20:19:00.861 [Thread-2] INFO  com.saciar.service.HttpClient - POST http://localhost:8000/auth/login
+2026-01-22 20:19:01.069 [Thread-2] ERROR com.saciar.service.HttpClient - Erro HTTP 404: {"detail":"User not found"}
+2026-01-22 20:19:07.433 [Thread-3] INFO  com.saciar.service.HttpClient - POST http://localhost:8000/auth/login
+2026-01-22 20:19:07.715 [Thread-3] INFO  com.saciar.service.HttpClient - Cache invalidado para: auth
+2026-01-22 20:19:07.876 [JavaFX Application Thread] INFO  c.saciar.controller.MainController - View de clientes carregada
+2026-01-22 20:19:07.876 [Thread-4] INFO  com.saciar.service.ClienteService - Buscando todos os clientes
+2026-01-22 20:19:07.877 [Thread-4] INFO  com.saciar.service.HttpClient - GET http://localhost:8000/clientes
+2026-01-22 20:19:07.914 [JavaFX Application Thread] WARN  com.saciar.SaciarApplication - Ícone não encontrado
+2026-01-22 20:19:07.989 [Thread-4] INFO  com.saciar.service.ClienteService - 4 clientes encontrados
+2026-01-22 20:19:08.260 [JavaFX Application Thread] INFO  com.saciar.SaciarApplication - Aplicação iniciada com sucesso!
+2026-01-22 20:19:25.739 [Thread-5] INFO  com.saciar.service.ClienteService - Cadastrando cliente: teste2
+2026-01-22 20:19:25.744 [Thread-5] INFO  com.saciar.service.HttpClient - POST http://localhost:8000/clientes
+2026-01-22 20:19:25.794 [Thread-5] INFO  com.saciar.service.HttpClient - Cache invalidado para: clientes
+2026-01-22 20:19:25.796 [Thread-5] INFO  com.saciar.service.ClienteService - Cliente cadastrado com sucesso: ID 6972b07d641c6d856bc30efa
+2026-01-22 20:19:27.177 [Thread-6] INFO  com.saciar.service.ClienteService - Buscando todos os clientes
+2026-01-22 20:19:27.178 [Thread-6] INFO  com.saciar.service.HttpClient - GET http://localhost:8000/clientes
+2026-01-22 20:19:27.187 [Thread-6] INFO  com.saciar.service.ClienteService - 5 clientes encontrados
+2026-01-22 20:31:34.847 [Thread-7] INFO  com.saciar.service.ClienteService - Removendo cliente ID: null
+2026-01-22 20:31:34.882 [Thread-7] INFO  com.saciar.service.HttpClient - DELETE http://localhost:8000/clientes/null
+2026-01-22 20:31:34.902 [Thread-7] ERROR com.saciar.service.HttpClient - Erro HTTP 404: {"detail":"Error: Cliente not found"}
+2026-01-22 20:31:38.885 [Thread-8] INFO  com.saciar.service.ClienteService - Buscando todos os clientes
+2026-01-22 20:31:38.885 [Thread-8] INFO  com.saciar.service.HttpClient - GET http://localhost:8000/clientes
+2026-01-22 20:31:38.886 [JavaFX Application Thread] INFO  c.saciar.controller.MainController - View de clientes carregada
+2026-01-22 20:31:38.915 [Thread-8] INFO  com.saciar.service.ClienteService - 5 clientes encontrados
+2026-01-22 20:36:25.686 [Thread-9] INFO  com.saciar.service.ClienteService - Removendo cliente ID: null
+2026-01-22 20:36:25.687 [Thread-9] INFO  com.saciar.service.HttpClient - DELETE http://localhost:8000/clientes/null
+2026-01-22 20:36:25.696 [Thread-9] ERROR com.saciar.service.HttpClient - Erro HTTP 404: {"detail":"Error: Cliente not found"}
+2026-01-22 20:36:28.135 [Thread-10] INFO  com.saciar.service.ClienteService - Buscando todos os clientes
+2026-01-22 20:36:28.136 [Thread-10] INFO  com.saciar.service.HttpClient - GET http://localhost:8000/clientes
+2026-01-22 20:36:28.137 [JavaFX Application Thread] INFO  c.saciar.controller.MainController - View de clientes carregada
+2026-01-22 20:36:28.157 [Thread-10] INFO  com.saciar.service.ClienteService - 5 clientes encontrados
+2026-01-22 20:37:53.584 [Thread-11] INFO  com.saciar.service.ClienteService - Removendo cliente ID: null
+2026-01-22 20:37:53.585 [Thread-11] INFO  com.saciar.service.HttpClient - DELETE http://localhost:8000/clientes/null
+2026-01-22 20:37:53.591 [Thread-11] ERROR com.saciar.service.HttpClient - Erro HTTP 404: {"detail":"Error: Cliente not found"}
+2026-01-22 22:02:54.466 [Thread-12] INFO  com.saciar.service.ClienteService - Removendo cliente ID: null
+2026-01-22 22:02:54.515 [Thread-12] INFO  com.saciar.service.HttpClient - DELETE http://localhost:8000/clientes/null
+2026-01-22 22:02:54.602 [Thread-12] ERROR com.saciar.service.HttpClient - Erro HTTP 404: {"detail":"Error: Cliente not found"}
+2026-01-22 22:02:57.630 [Thread-13] INFO  com.saciar.service.ClienteService - Buscando todos os clientes
+2026-01-22 22:02:57.632 [Thread-13] INFO  com.saciar.service.HttpClient - GET http://localhost:8000/clientes
+2026-01-22 22:02:57.649 [JavaFX Application Thread] INFO  c.saciar.controller.MainController - View de clientes carregada
+2026-01-22 22:02:57.878 [Thread-13] INFO  com.saciar.service.ClienteService - 5 clientes encontrados
+2026-01-22 22:04:41.105 [Thread-14] INFO  com.saciar.service.ClienteService - Removendo cliente ID: null
+2026-01-22 22:04:41.107 [Thread-14] INFO  com.saciar.service.HttpClient - DELETE http://localhost:8000/clientes/null
+2026-01-22 22:04:41.119 [Thread-14] ERROR com.saciar.service.HttpClient - Erro HTTP 404: {"detail":"Error: Cliente not found"}
+2026-01-22 22:04:46.379 [JavaFX Application Thread] INFO  com.saciar.SaciarApplication - Encerrando aplicação...
+2026-01-22 22:04:56.774 [JavaFX Application Thread] INFO  com.saciar.SaciarApplication - Iniciando aplicação SACIAR...
+2026-01-22 22:05:12.439 [Thread-2] INFO  com.saciar.service.HttpClient - POST http://localhost:8000/auth/login
+2026-01-22 22:05:12.766 [Thread-2] INFO  com.saciar.service.HttpClient - Cache invalidado para: auth
+2026-01-22 22:05:12.927 [Thread-3] INFO  com.saciar.service.ClienteService - Buscando todos os clientes
+2026-01-22 22:05:12.928 [JavaFX Application Thread] INFO  c.saciar.controller.MainController - View de clientes carregada
+2026-01-22 22:05:12.928 [Thread-3] INFO  com.saciar.service.HttpClient - GET http://localhost:8000/clientes
+2026-01-22 22:05:12.959 [JavaFX Application Thread] WARN  com.saciar.SaciarApplication - Ícone não encontrado
+2026-01-22 22:05:13.035 [Thread-3] INFO  com.saciar.service.ClienteService - 5 clientes encontrados
+2026-01-22 22:05:13.354 [JavaFX Application Thread] INFO  com.saciar.SaciarApplication - Aplicação iniciada com sucesso!
+2026-01-22 22:05:16.324 [Thread-4] INFO  com.saciar.service.ClienteService - Removendo cliente ID: null
+2026-01-22 22:05:16.328 [Thread-4] INFO  com.saciar.service.HttpClient - DELETE http://localhost:8000/clientes/null BODY {id=null}
+2026-01-22 22:05:16.336 [Thread-4] ERROR com.saciar.service.HttpClient - Erro HTTP 404: {"detail":"Error: Cliente not found"}
+2026-01-22 22:09:44.957 [JavaFX Application Thread] INFO  com.saciar.SaciarApplication - Encerrando aplicação...
+2026-01-22 22:09:56.277 [JavaFX Application Thread] INFO  com.saciar.SaciarApplication - Iniciando aplicação SACIAR...
+2026-01-22 22:10:06.007 [Thread-2] INFO  com.saciar.service.HttpClient - POST http://localhost:8000/auth/login
+2026-01-22 22:10:07.401 [Thread-2] INFO  com.saciar.service.HttpClient - Cache invalidado para: auth
+2026-01-22 22:10:07.740 [JavaFX Application Thread] INFO  c.saciar.controller.MainController - View de clientes carregada
+2026-01-22 22:10:07.740 [Thread-3] INFO  com.saciar.service.ClienteService - Buscando todos os clientes
+2026-01-22 22:10:07.741 [Thread-3] INFO  com.saciar.service.HttpClient - GET http://localhost:8000/clientes
+2026-01-22 22:10:07.774 [JavaFX Application Thread] WARN  com.saciar.SaciarApplication - Ícone não encontrado
+2026-01-22 22:10:07.939 [Thread-3] INFO  com.saciar.service.ClienteService - 5 clientes encontrados
+2026-01-22 22:10:08.312 [JavaFX Application Thread] INFO  com.saciar.SaciarApplication - Aplicação iniciada com sucesso!
+2026-01-22 22:11:38.809 [Thread-4] INFO  com.saciar.service.ClienteService - Removendo cliente ID: null
+2026-01-22 22:11:38.847 [Thread-4] INFO  com.saciar.service.HttpClient - DELETE http://localhost:8000/clientes/null BODY {id=null}
+2026-01-22 22:11:38.873 [Thread-4] ERROR com.saciar.service.HttpClient - Erro HTTP 404: {"detail":"Error: Cliente not found"}
+2026-01-22 22:13:18.018 [JavaFX Application Thread] INFO  com.saciar.SaciarApplication - Encerrando aplicação...
+2026-01-22 22:13:24.427 [JavaFX Application Thread] INFO  com.saciar.SaciarApplication - Iniciando aplicação SACIAR...
+2026-01-22 22:13:32.284 [Thread-2] INFO  com.saciar.service.HttpClient - POST http://localhost:8000/auth/login
+2026-01-22 22:13:32.618 [Thread-2] INFO  com.saciar.service.HttpClient - Cache invalidado para: auth
+2026-01-22 22:13:32.796 [Thread-3] INFO  com.saciar.service.ClienteService - Buscando todos os clientes
+2026-01-22 22:13:32.797 [JavaFX Application Thread] INFO  c.saciar.controller.MainController - View de clientes carregada
+2026-01-22 22:13:32.797 [Thread-3] INFO  com.saciar.service.HttpClient - GET http://localhost:8000/clientes
+2026-01-22 22:13:32.840 [JavaFX Application Thread] WARN  com.saciar.SaciarApplication - Ícone não encontrado
+2026-01-22 22:13:32.914 [Thread-3] INFO  com.saciar.service.ClienteService - 5 clientes encontrados
+2026-01-22 22:13:33.092 [JavaFX Application Thread] INFO  com.saciar.SaciarApplication - Aplicação iniciada com sucesso!
+2026-01-22 22:13:36.132 [Thread-4] INFO  com.saciar.service.ClienteService - Removendo cliente ID: null
+2026-01-22 22:13:36.137 [Thread-4] INFO  com.saciar.service.HttpClient - DELETE http://localhost:8000/clientes/null BODY {id=null}
+2026-01-22 22:13:36.144 [Thread-4] ERROR com.saciar.service.HttpClient - Erro HTTP 404: {"detail":"Error: Cliente not found"}
+2026-01-22 22:14:08.620 [JavaFX Application Thread] INFO  com.saciar.SaciarApplication - Encerrando aplicação...
+2026-01-22 22:14:14.057 [JavaFX Application Thread] INFO  com.saciar.SaciarApplication - Iniciando aplicação SACIAR...
+2026-01-22 22:14:21.348 [Thread-2] INFO  com.saciar.service.HttpClient - POST http://localhost:8000/auth/login
+2026-01-22 22:14:21.707 [Thread-2] INFO  com.saciar.service.HttpClient - Cache invalidado para: auth
+2026-01-22 22:14:21.856 [Thread-3] INFO  com.saciar.service.ClienteService - Buscando todos os clientes
+2026-01-22 22:14:21.857 [JavaFX Application Thread] INFO  c.saciar.controller.MainController - View de clientes carregada
+2026-01-22 22:14:21.857 [Thread-3] INFO  com.saciar.service.HttpClient - GET http://localhost:8000/clientes
+2026-01-22 22:14:21.898 [JavaFX Application Thread] WARN  com.saciar.SaciarApplication - Ícone não encontrado
+2026-01-22 22:14:21.941 [Thread-3] INFO  com.saciar.service.ClienteService - 5 clientes encontrados
+2026-01-22 22:14:22.218 [JavaFX Application Thread] INFO  com.saciar.SaciarApplication - Aplicação iniciada com sucesso!
+2026-01-22 22:14:27.207 [Thread-4] INFO  com.saciar.service.ClienteService - Removendo cliente ID: null
+2026-01-22 22:14:27.212 [Thread-4] INFO  com.saciar.service.HttpClient - DELETE http://localhost:8000/clientes/null BODY {id=null}
+2026-01-22 22:14:27.257 [Thread-4] ERROR com.saciar.service.HttpClient - Erro HTTP 404: {"detail":"Error: Cliente not found"}
+2026-01-22 22:14:54.654 [JavaFX Application Thread] INFO  com.saciar.SaciarApplication - Encerrando aplicação...
+2026-01-22 22:14:59.521 [JavaFX Application Thread] INFO  com.saciar.SaciarApplication - Iniciando aplicação SACIAR...
+2026-01-22 22:15:05.323 [Thread-2] INFO  com.saciar.service.HttpClient - POST http://localhost:8000/auth/login
+2026-01-22 22:15:05.653 [Thread-2] INFO  com.saciar.service.HttpClient - Cache invalidado para: auth
+2026-01-22 22:15:05.792 [Thread-3] INFO  com.saciar.service.ClienteService - Buscando todos os clientes
+2026-01-22 22:15:05.794 [JavaFX Application Thread] INFO  c.saciar.controller.MainController - View de clientes carregada
+2026-01-22 22:15:05.793 [Thread-3] INFO  com.saciar.service.HttpClient - GET http://localhost:8000/clientes
+2026-01-22 22:15:05.837 [JavaFX Application Thread] WARN  com.saciar.SaciarApplication - Ícone não encontrado
+2026-01-22 22:15:05.901 [Thread-3] INFO  com.saciar.service.ClienteService - 5 clientes encontrados
+2026-01-22 22:15:06.096 [JavaFX Application Thread] INFO  com.saciar.SaciarApplication - Aplicação iniciada com sucesso!
+2026-01-22 22:15:08.998 [Thread-4] INFO  com.saciar.service.ClienteService - Removendo cliente ID: null
+2026-01-22 22:15:09.002 [Thread-4] INFO  com.saciar.service.HttpClient - DELETE http://localhost:8000/clientes/null BODY {id=null}
+2026-01-22 22:15:09.009 [Thread-4] ERROR com.saciar.service.HttpClient - Erro HTTP 404: {"detail":"Error: Cliente not found"}
+2026-01-22 22:16:16.703 [JavaFX Application Thread] INFO  com.saciar.SaciarApplication - Encerrando aplicação...
+2026-01-22 22:16:22.074 [JavaFX Application Thread] INFO  com.saciar.SaciarApplication - Iniciando aplicação SACIAR...
+2026-01-22 22:16:27.364 [Thread-2] INFO  com.saciar.service.HttpClient - POST http://localhost:8000/auth/login
+2026-01-22 22:16:27.694 [Thread-2] INFO  com.saciar.service.HttpClient - Cache invalidado para: auth
+2026-01-22 22:16:27.861 [Thread-3] INFO  com.saciar.service.ClienteService - Buscando todos os clientes
+2026-01-22 22:16:27.862 [JavaFX Application Thread] INFO  c.saciar.controller.MainController - View de clientes carregada
+2026-01-22 22:16:27.862 [Thread-3] INFO  com.saciar.service.HttpClient - GET http://localhost:8000/clientes
+2026-01-22 22:16:27.904 [JavaFX Application Thread] WARN  com.saciar.SaciarApplication - Ícone não encontrado
+2026-01-22 22:16:27.970 [Thread-3] INFO  com.saciar.service.ClienteService - 5 clientes encontrados
+2026-01-22 22:16:28.152 [JavaFX Application Thread] INFO  com.saciar.SaciarApplication - Aplicação iniciada com sucesso!
+2026-01-22 22:16:30.954 [Thread-4] INFO  com.saciar.service.ClienteService - Removendo cliente ID: null
+2026-01-22 22:16:30.958 [Thread-4] INFO  com.saciar.service.HttpClient - DELETE http://localhost:8000/clientes/null BODY {id=null}
+2026-01-22 22:16:30.998 [Thread-4] ERROR com.saciar.service.HttpClient - Erro HTTP 404: {"detail":"Error: Cliente not found"}
+2026-01-22 22:18:05.869 [JavaFX Application Thread] INFO  com.saciar.SaciarApplication - Iniciando aplicação SACIAR...
+2026-01-22 22:18:11.727 [Thread-2] INFO  com.saciar.service.HttpClient - POST http://localhost:8000/auth/login
+2026-01-22 22:18:12.038 [Thread-2] INFO  com.saciar.service.HttpClient - Cache invalidado para: auth
+2026-01-22 22:18:12.236 [Thread-3] INFO  com.saciar.service.ClienteService - Buscando todos os clientes
+2026-01-22 22:18:12.237 [Thread-3] INFO  com.saciar.service.HttpClient - GET http://localhost:8000/clientes
+2026-01-22 22:18:12.238 [JavaFX Application Thread] INFO  c.saciar.controller.MainController - View de clientes carregada
+2026-01-22 22:18:12.279 [JavaFX Application Thread] WARN  com.saciar.SaciarApplication - Ícone não encontrado
+2026-01-22 22:18:12.361 [Thread-3] INFO  com.saciar.service.ClienteService - 5 clientes encontrados
+2026-01-22 22:18:12.542 [JavaFX Application Thread] INFO  com.saciar.SaciarApplication - Aplicação iniciada com sucesso!
+2026-01-22 22:18:15.733 [Thread-4] INFO  com.saciar.service.ClienteService - Removendo cliente ID: null
+2026-01-22 22:18:15.735 [Thread-4] INFO  com.saciar.service.HttpClient - DELETE http://localhost:8000/clientes/null BODY {id=null}
+2026-01-22 22:18:15.741 [Thread-4] ERROR com.saciar.service.HttpClient - Erro HTTP 404: {"detail":"Error: Cliente not found"}
+2026-01-22 22:20:07.587 [JavaFX Application Thread] INFO  com.saciar.SaciarApplication - Iniciando aplicação SACIAR...
+2026-01-22 22:20:13.655 [Thread-2] INFO  com.saciar.service.HttpClient - POST http://localhost:8000/auth/login
+2026-01-22 22:20:13.959 [Thread-2] INFO  com.saciar.service.HttpClient - Cache invalidado para: auth
+2026-01-22 22:20:14.121 [Thread-3] INFO  com.saciar.service.ClienteService - Buscando todos os clientes
+2026-01-22 22:20:14.122 [Thread-3] INFO  com.saciar.service.HttpClient - GET http://localhost:8000/clientes
+2026-01-22 22:20:14.126 [JavaFX Application Thread] INFO  c.saciar.controller.MainController - View de clientes carregada
+2026-01-22 22:20:14.177 [JavaFX Application Thread] WARN  com.saciar.SaciarApplication - Ícone não encontrado
+2026-01-22 22:20:14.252 [Thread-3] INFO  com.saciar.service.ClienteService - 5 clientes encontrados
+2026-01-22 22:20:14.480 [JavaFX Application Thread] INFO  com.saciar.SaciarApplication - Aplicação iniciada com sucesso!
+2026-01-22 22:21:21.545 [JavaFX Application Thread] INFO  com.saciar.SaciarApplication - Iniciando aplicação SACIAR...
+2026-01-22 22:21:28.007 [Thread-2] INFO  com.saciar.service.HttpClient - POST http://localhost:8000/auth/login
+2026-01-22 22:21:28.305 [Thread-2] INFO  com.saciar.service.HttpClient - Cache invalidado para: auth
+2026-01-22 22:21:28.483 [Thread-3] INFO  com.saciar.service.ClienteService - Buscando todos os clientes
+2026-01-22 22:21:28.483 [JavaFX Application Thread] INFO  c.saciar.controller.MainController - View de clientes carregada
+2026-01-22 22:21:28.484 [Thread-3] INFO  com.saciar.service.HttpClient - GET http://localhost:8000/clientes
+2026-01-22 22:21:28.521 [JavaFX Application Thread] WARN  com.saciar.SaciarApplication - Ícone não encontrado
+2026-01-22 22:21:28.594 [Thread-3] INFO  com.saciar.service.ClienteService - 5 clientes encontrados
+2026-01-22 22:21:28.759 [JavaFX Application Thread] INFO  com.saciar.SaciarApplication - Aplicação iniciada com sucesso!
+2026-01-22 22:21:32.866 [Thread-4] INFO  com.saciar.service.ClienteService - Removendo cliente ID: 696fcdc674f059ba8cfef1d0
+2026-01-22 22:21:32.868 [Thread-4] INFO  com.saciar.service.HttpClient - DELETE http://localhost:8000/clientes/696fcdc674f059ba8cfef1d0 BODY {id=696fcdc674f059ba8cfef1d0}
+2026-01-22 22:21:32.922 [Thread-4] INFO  com.saciar.service.HttpClient - Cache invalidado para: clientes
+2026-01-22 22:21:32.923 [Thread-4] INFO  com.saciar.service.ClienteService - Cliente removido com sucesso
+2026-01-22 22:21:33.870 [Thread-5] INFO  com.saciar.service.ClienteService - Buscando todos os clientes
+2026-01-22 22:21:33.871 [Thread-5] INFO  com.saciar.service.HttpClient - GET http://localhost:8000/clientes
+2026-01-22 22:21:33.881 [Thread-5] INFO  com.saciar.service.ClienteService - 4 clientes encontrados
+2026-01-22 22:21:40.141 [Thread-6] INFO  com.saciar.service.ClienteService - Atualizando cliente: teste2
+2026-01-22 22:21:40.148 [Thread-6] INFO  com.saciar.service.HttpClient - PUT http://localhost:8000/clientes/6972b07d641c6d856bc30efa
+2026-01-22 22:21:40.193 [Thread-6] INFO  com.saciar.service.HttpClient - Cache invalidado para: clientes
+2026-01-22 22:21:40.194 [Thread-6] INFO  com.saciar.service.ClienteService - Cliente atualizado com sucesso
+2026-01-22 22:21:41.033 [Thread-7] INFO  com.saciar.service.ClienteService - Buscando todos os clientes
+2026-01-22 22:21:41.034 [Thread-7] INFO  com.saciar.service.HttpClient - GET http://localhost:8000/clientes
+2026-01-22 22:21:41.075 [Thread-7] INFO  com.saciar.service.ClienteService - 4 clientes encontrados
+2026-01-22 22:22:21.078 [Thread-8] INFO  com.saciar.service.ClienteService - Cadastrando cliente: TESTE 3 KKKK
+2026-01-22 22:22:21.080 [Thread-8] INFO  com.saciar.service.HttpClient - POST http://localhost:8000/clientes
+2026-01-22 22:22:21.102 [Thread-8] ERROR com.saciar.service.HttpClient - Erro HTTP 403: {"detail":"Usuário já existe!"}
+2026-01-22 22:22:42.749 [JavaFX Application Thread] INFO  com.saciar.SaciarApplication - Encerrando aplicação...
+2026-01-22 22:22:56.763 [JavaFX Application Thread] INFO  com.saciar.SaciarApplication - Iniciando aplicação SACIAR...
+2026-01-22 22:23:01.726 [Thread-2] INFO  com.saciar.service.HttpClient - POST http://localhost:8000/auth/login
+2026-01-22 22:23:01.726 [Thread-3] INFO  com.saciar.service.HttpClient - POST http://localhost:8000/auth/login
+2026-01-22 22:23:02.063 [Thread-3] INFO  com.saciar.service.HttpClient - Cache invalidado para: auth
+2026-01-22 22:23:02.063 [Thread-2] INFO  com.saciar.service.HttpClient - Cache invalidado para: auth
+2026-01-22 22:23:02.240 [Thread-4] INFO  com.saciar.service.ClienteService - Buscando todos os clientes
+2026-01-22 22:23:02.241 [JavaFX Application Thread] INFO  c.saciar.controller.MainController - View de clientes carregada
+2026-01-22 22:23:02.241 [Thread-4] INFO  com.saciar.service.HttpClient - GET http://localhost:8000/clientes
+2026-01-22 22:23:02.287 [JavaFX Application Thread] WARN  com.saciar.SaciarApplication - Ícone não encontrado
+2026-01-22 22:23:02.370 [Thread-4] INFO  com.saciar.service.ClienteService - 4 clientes encontrados
+2026-01-22 22:23:02.548 [JavaFX Application Thread] INFO  com.saciar.SaciarApplication - Aplicação iniciada com sucesso!
+2026-01-22 22:23:02.592 [JavaFX Application Thread] INFO  c.saciar.controller.MainController - View de clientes carregada
+2026-01-22 22:23:02.592 [Thread-5] INFO  com.saciar.service.ClienteService - Buscando todos os clientes
+2026-01-22 22:23:02.593 [Thread-5] INFO  com.saciar.service.HttpClient - Cache hit: /clientes
+2026-01-22 22:23:02.606 [Thread-5] INFO  com.saciar.service.ClienteService - 4 clientes encontrados
+2026-01-22 22:23:02.714 [JavaFX Application Thread] WARN  com.saciar.SaciarApplication - Ícone não encontrado
+2026-01-22 22:23:02.715 [JavaFX Application Thread] INFO  com.saciar.SaciarApplication - Aplicação iniciada com sucesso!
+2026-01-22 22:26:09.366 [Thread-6] INFO  com.saciar.service.CompraService - Buscando todas as compras
+2026-01-22 22:26:09.367 [Thread-6] INFO  com.saciar.service.HttpClient - GET http://localhost:8000/purchase/
+2026-01-22 22:26:09.370 [JavaFX Application Thread] INFO  c.saciar.controller.MainController - View de compras carregada
+2026-01-22 22:26:09.430 [Thread-6] INFO  com.saciar.service.CompraService - 9 compras encontradas
+2026-01-22 22:27:02.155 [Thread-7] INFO  com.saciar.service.CompraService - Buscando compras com query: 111111111
+2026-01-22 22:27:02.190 [Thread-7] INFO  com.saciar.service.HttpClient - GET http://localhost:8000/purchase/search?q=111111111
+2026-01-22 22:27:02.211 [Thread-7] INFO  com.saciar.service.CompraService - 5 compras encontradas
+2026-01-22 22:27:05.610 [Thread-8] INFO  com.saciar.service.CompraService - Buscando compras com query: ia
+2026-01-22 22:27:05.611 [Thread-8] INFO  com.saciar.service.HttpClient - GET http://localhost:8000/purchase/search?q=ia
+2026-01-22 22:27:05.623 [Thread-8] INFO  com.saciar.service.CompraService - 5 compras encontradas
+2026-01-22 22:27:07.571 [Thread-9] INFO  com.saciar.service.CompraService - Buscando todas as compras
+2026-01-22 22:27:07.572 [Thread-9] INFO  com.saciar.service.HttpClient - GET http://localhost:8000/purchase/
+2026-01-22 22:27:07.581 [Thread-9] INFO  com.saciar.service.CompraService - 9 compras encontradas
+2026-01-22 22:27:14.830 [Thread-10] INFO  com.saciar.service.CompraService - Removendo compra ID: 696ff0fcd58ff74e1cf164e9
+2026-01-22 22:27:14.831 [Thread-10] INFO  com.saciar.service.HttpClient - DELETE http://localhost:8000/purchase/696ff0fcd58ff74e1cf164e9
+2026-01-22 22:27:14.848 [Thread-10] INFO  com.saciar.service.HttpClient - Cache invalidado para: purchase
+2026-01-22 22:27:14.848 [Thread-10] INFO  com.saciar.service.CompraService - Compra removida com sucesso
+2026-01-22 22:27:15.656 [Thread-11] INFO  com.saciar.service.CompraService - Buscando todas as compras
+2026-01-22 22:27:15.656 [Thread-11] INFO  com.saciar.service.HttpClient - GET http://localhost:8000/purchase/
+2026-01-22 22:27:15.666 [Thread-11] INFO  com.saciar.service.CompraService - 8 compras encontradas
+2026-01-22 22:27:17.829 [Thread-12] INFO  com.saciar.service.CompraService - Removendo compra ID: 696ff1c7d58ff74e1cf164ea
+2026-01-22 22:27:17.831 [Thread-12] INFO  com.saciar.service.HttpClient - DELETE http://localhost:8000/purchase/696ff1c7d58ff74e1cf164ea
+2026-01-22 22:27:17.871 [Thread-12] INFO  com.saciar.service.HttpClient - Cache invalidado para: purchase
+2026-01-22 22:27:17.871 [Thread-12] INFO  com.saciar.service.CompraService - Compra removida com sucesso
+2026-01-22 22:27:18.916 [Thread-13] INFO  com.saciar.service.CompraService - Buscando todas as compras
+2026-01-22 22:27:18.917 [Thread-13] INFO  com.saciar.service.HttpClient - GET http://localhost:8000/purchase/
+2026-01-22 22:27:18.925 [Thread-13] INFO  com.saciar.service.CompraService - 7 compras encontradas
+2026-01-22 22:27:21.023 [Thread-14] INFO  com.saciar.service.ResgateService - Buscando todos os resgates
+2026-01-22 22:27:21.024 [Thread-14] INFO  com.saciar.service.HttpClient - GET http://localhost:8000/redeems/
+2026-01-22 22:27:21.024 [Thread-15] INFO  com.saciar.service.ResgateService - Buscando prêmios disponíveis
+2026-01-22 22:27:21.025 [Thread-15] INFO  com.saciar.service.HttpClient - GET http://localhost:8000/prizes
+2026-01-22 22:27:21.028 [JavaFX Application Thread] INFO  c.saciar.controller.MainController - View de resgates carregada
+2026-01-22 22:27:21.049 [Thread-15] INFO  com.saciar.service.ResgateService - 8 prêmios encontrados
+2026-01-22 22:27:21.049 [Thread-15] INFO  c.s.controller.ResgateController - 8 prêmios carregados
+2026-01-22 22:27:21.065 [Thread-14] INFO  com.saciar.service.ResgateService - 10 resgates encontrados
+2026-01-22 22:27:56.664 [Thread-16] INFO  com.saciar.service.ResgateService - Removendo resgate ID: 696febedd58ff74e1cf164e6
+2026-01-22 22:27:56.667 [Thread-16] INFO  com.saciar.service.HttpClient - DELETE http://localhost:8000/redeems/696febedd58ff74e1cf164e6
+2026-01-22 22:27:56.738 [Thread-16] INFO  com.saciar.service.HttpClient - Cache invalidado para: redeems
+2026-01-22 22:27:56.738 [Thread-16] INFO  com.saciar.service.ResgateService - Resgate removido com sucesso
+2026-01-22 22:27:57.565 [Thread-17] INFO  com.saciar.service.ResgateService - Buscando todos os resgates
+2026-01-22 22:27:57.565 [Thread-17] INFO  com.saciar.service.HttpClient - GET http://localhost:8000/redeems/
+2026-01-22 22:27:57.627 [Thread-17] INFO  com.saciar.service.ResgateService - 9 resgates encontrados
+2026-01-22 22:28:01.518 [Thread-18] INFO  com.saciar.service.ResgateService - Removendo resgate ID: 696fe9b3d58ff74e1cf164d4
+2026-01-22 22:28:01.519 [Thread-18] INFO  com.saciar.service.HttpClient - DELETE http://localhost:8000/redeems/696fe9b3d58ff74e1cf164d4
+2026-01-22 22:28:01.557 [Thread-18] INFO  com.saciar.service.HttpClient - Cache invalidado para: redeems
+2026-01-22 22:28:01.557 [Thread-18] INFO  com.saciar.service.ResgateService - Resgate removido com sucesso
+2026-01-22 22:28:02.505 [Thread-19] INFO  com.saciar.service.ResgateService - Buscando todos os resgates
+2026-01-22 22:28:02.506 [Thread-19] INFO  com.saciar.service.HttpClient - GET http://localhost:8000/redeems/
+2026-01-22 22:28:02.526 [Thread-19] INFO  com.saciar.service.ResgateService - 8 resgates encontrados
+2026-01-22 22:28:12.728 [Thread-20] INFO  com.saciar.service.ResgateService - Atualizando lista de prêmios: 7 itens
+2026-01-22 22:28:12.779 [Thread-20] INFO  com.saciar.service.HttpClient - PUT http://localhost:8000/prizes
+2026-01-22 22:28:12.806 [Thread-20] INFO  com.saciar.service.HttpClient - Cache invalidado para: prizes
+2026-01-22 22:28:12.807 [Thread-20] INFO  com.saciar.service.ResgateService - Lista de prêmios atualizada com sucesso
+2026-01-22 22:28:16.286 [Thread-21] INFO  com.saciar.service.ResgateService - Atualizando lista de prêmios: 6 itens
+2026-01-22 22:28:16.287 [Thread-21] INFO  com.saciar.service.HttpClient - PUT http://localhost:8000/prizes
+2026-01-22 22:28:16.316 [Thread-21] INFO  com.saciar.service.HttpClient - Cache invalidado para: prizes
+2026-01-22 22:28:16.316 [Thread-21] INFO  com.saciar.service.ResgateService - Lista de prêmios atualizada com sucesso
+2026-01-22 22:28:18.033 [Thread-22] INFO  com.saciar.service.ResgateService - Buscando prêmios disponíveis
+2026-01-22 22:28:18.034 [Thread-22] INFO  com.saciar.service.HttpClient - GET http://localhost:8000/prizes
+2026-01-22 22:28:18.046 [Thread-22] INFO  com.saciar.service.ResgateService - 6 prêmios encontrados
+2026-01-22 22:28:18.047 [Thread-22] INFO  c.s.controller.ResgateController - 6 prêmios carregados
+2026-01-22 22:31:05.685 [JavaFX Application Thread] INFO  com.saciar.SaciarApplication - Iniciando aplicação SACIAR...
+2026-01-22 22:31:13.593 [Thread-2] INFO  com.saciar.service.HttpClient - POST http://localhost:8000/auth/login
+2026-01-22 22:31:13.905 [Thread-2] INFO  com.saciar.service.HttpClient - Cache invalidado para: auth
+2026-01-22 22:31:14.067 [JavaFX Application Thread] INFO  c.saciar.controller.MainController - View de clientes carregada
+2026-01-22 22:31:14.067 [Thread-3] INFO  com.saciar.service.ClienteService - Buscando todos os clientes
+2026-01-22 22:31:14.068 [Thread-3] INFO  com.saciar.service.HttpClient - GET http://localhost:8000/clientes
+2026-01-22 22:31:14.104 [JavaFX Application Thread] WARN  com.saciar.SaciarApplication - Ícone não encontrado
+2026-01-22 22:31:14.198 [Thread-3] INFO  com.saciar.service.ClienteService - 4 clientes encontrados
+2026-01-22 22:31:14.422 [JavaFX Application Thread] INFO  com.saciar.SaciarApplication - Aplicação iniciada com sucesso!
+2026-01-22 22:31:18.555 [Thread-4] INFO  com.saciar.service.CompraService - Buscando todas as compras
+2026-01-22 22:31:18.556 [Thread-4] INFO  com.saciar.service.HttpClient - GET http://localhost:8000/purchase/
+2026-01-22 22:31:18.560 [JavaFX Application Thread] INFO  c.saciar.controller.MainController - View de compras carregada
+2026-01-22 22:31:18.577 [Thread-4] INFO  com.saciar.service.CompraService - 7 compras encontradas
+2026-01-22 22:31:19.737 [Thread-5] INFO  com.saciar.service.ResgateService - Buscando todos os resgates
+2026-01-22 22:31:19.738 [Thread-6] INFO  com.saciar.service.ResgateService - Buscando prêmios disponíveis
+2026-01-22 22:31:19.738 [Thread-5] INFO  com.saciar.service.HttpClient - GET http://localhost:8000/redeems/
+2026-01-22 22:31:19.739 [Thread-6] INFO  com.saciar.service.HttpClient - GET http://localhost:8000/prizes
+2026-01-22 22:31:19.745 [JavaFX Application Thread] INFO  c.saciar.controller.MainController - View de resgates carregada
+2026-01-22 22:31:19.766 [Thread-6] INFO  com.saciar.service.ResgateService - 6 prêmios encontrados
+2026-01-22 22:31:19.766 [Thread-6] INFO  c.s.controller.ResgateController - 6 prêmios carregados
+2026-01-22 22:31:19.781 [Thread-5] INFO  com.saciar.service.ResgateService - 8 resgates encontrados
+2026-01-22 22:31:23.191 [Thread-7] INFO  com.saciar.service.ResgateService - Removendo resgate ID: 695e141361b6e197b324b5cf
+2026-01-22 22:31:23.193 [Thread-7] INFO  com.saciar.service.HttpClient - DELETE http://localhost:8000/redeems/695e141361b6e197b324b5cf
+2026-01-22 22:31:23.203 [Thread-7] INFO  com.saciar.service.HttpClient - Cache invalidado para: redeems
+2026-01-22 22:31:23.204 [Thread-7] INFO  com.saciar.service.ResgateService - Resgate removido com sucesso
+2026-01-22 22:31:24.138 [Thread-8] INFO  com.saciar.service.ResgateService - Buscando todos os resgates
+2026-01-22 22:31:24.139 [Thread-8] INFO  com.saciar.service.HttpClient - GET http://localhost:8000/redeems/
+2026-01-22 22:31:24.163 [Thread-8] INFO  com.saciar.service.ResgateService - 7 resgates encontrados
+2026-01-22 22:31:46.831 [Thread-9] INFO  com.saciar.service.ResgateService - Buscando prêmios disponíveis
+2026-01-22 22:31:46.832 [Thread-9] INFO  com.saciar.service.HttpClient - Cache hit: /prizes
+2026-01-22 22:31:46.834 [Thread-9] INFO  com.saciar.service.ResgateService - 6 prêmios encontrados
+2026-01-22 22:31:46.835 [Thread-9] INFO  c.s.controller.ResgateController - 6 prêmios carregados
+2026-01-22 22:32:08.169 [Thread-10] INFO  c.s.controller.ResgateController - Resgates exportados para: /home/durag/Documents/Iago/resgates.csv
+2026-01-22 22:34:53.369 [JavaFX Application Thread] INFO  com.saciar.SaciarApplication - Iniciando aplicação SACIAR...
+2026-01-22 22:35:18.349 [Thread-2] INFO  com.saciar.service.HttpClient - POST http://localhost:8000/auth/login
+2026-01-22 22:35:18.671 [Thread-2] INFO  com.saciar.service.HttpClient - Cache invalidado para: auth
+2026-01-22 22:35:18.804 [JavaFX Application Thread] INFO  c.saciar.controller.MainController - View de clientes carregada
+2026-01-22 22:35:18.804 [Thread-3] INFO  com.saciar.service.ClienteService - Buscando todos os clientes
+2026-01-22 22:35:18.805 [Thread-3] INFO  com.saciar.service.HttpClient - GET http://localhost:8000/clientes
+2026-01-22 22:35:18.845 [JavaFX Application Thread] WARN  com.saciar.SaciarApplication - Ícone não encontrado
+2026-01-22 22:35:18.897 [Thread-3] INFO  com.saciar.service.ClienteService - 4 clientes encontrados
+2026-01-22 22:35:19.057 [JavaFX Application Thread] INFO  com.saciar.SaciarApplication - Aplicação iniciada com sucesso!
+2026-01-22 22:35:34.812 [JavaFX Application Thread] INFO  com.saciar.SaciarApplication - Iniciando aplicação SACIAR...
+2026-01-22 22:35:39.197 [Thread-2] INFO  com.saciar.service.HttpClient - POST http://localhost:8000/auth/login
+2026-01-22 22:35:39.489 [Thread-2] INFO  com.saciar.service.HttpClient - Cache invalidado para: auth
+2026-01-22 22:35:39.635 [Thread-3] INFO  com.saciar.service.ClienteService - Buscando todos os clientes
+2026-01-22 22:35:39.636 [JavaFX Application Thread] INFO  c.saciar.controller.MainController - View de clientes carregada
+2026-01-22 22:35:39.636 [Thread-3] INFO  com.saciar.service.HttpClient - GET http://localhost:8000/clientes
+2026-01-22 22:35:39.676 [JavaFX Application Thread] WARN  com.saciar.SaciarApplication - Ícone não encontrado
+2026-01-22 22:35:39.769 [Thread-3] INFO  com.saciar.service.ClienteService - 4 clientes encontrados
+2026-01-22 22:35:39.942 [JavaFX Application Thread] INFO  com.saciar.SaciarApplication - Aplicação iniciada com sucesso!
+2026-01-22 22:35:47.869 [Thread-4] INFO  com.saciar.service.CompraService - Buscando todas as compras
+2026-01-22 22:35:47.870 [Thread-4] INFO  com.saciar.service.HttpClient - GET http://localhost:8000/purchase/
+2026-01-22 22:35:47.873 [JavaFX Application Thread] INFO  c.saciar.controller.MainController - View de compras carregada
+2026-01-22 22:35:47.927 [Thread-4] INFO  com.saciar.service.CompraService - 7 compras encontradas
+2026-01-22 22:35:48.487 [Thread-5] INFO  com.saciar.service.ResgateService - Buscando todos os resgates
+2026-01-22 22:35:48.488 [Thread-5] INFO  com.saciar.service.HttpClient - GET http://localhost:8000/redeems/
+2026-01-22 22:35:48.488 [Thread-6] INFO  com.saciar.service.ResgateService - Buscando prêmios disponíveis
+2026-01-22 22:35:48.489 [Thread-6] INFO  com.saciar.service.HttpClient - GET http://localhost:8000/prizes
+2026-01-22 22:35:48.493 [JavaFX Application Thread] INFO  c.saciar.controller.MainController - View de resgates carregada
+2026-01-22 22:35:48.509 [Thread-6] INFO  com.saciar.service.ResgateService - 6 prêmios encontrados
+2026-01-22 22:35:48.510 [Thread-6] INFO  c.s.controller.ResgateController - 6 prêmios carregados
+2026-01-22 22:35:48.531 [Thread-5] INFO  com.saciar.service.ResgateService - 7 resgates encontrados
+2026-01-22 22:35:52.026 [Thread-7] INFO  com.saciar.service.ResgateService - Buscando resgates com query: 444
+2026-01-22 22:35:52.063 [Thread-7] INFO  com.saciar.service.HttpClient - GET http://localhost:8000/redeems/search?q=444
+2026-01-22 22:35:52.094 [Thread-7] INFO  com.saciar.service.ResgateService - 1 resgates encontrados
+2026-01-22 22:35:52.095 [Thread-7] INFO  c.s.controller.ResgateController - Encontrados 1 resgates para busca: 444
+2026-01-22 22:35:55.285 [Thread-8] INFO  com.saciar.service.CompraService - Buscando todas as compras
+2026-01-22 22:35:55.286 [Thread-8] INFO  com.saciar.service.HttpClient - Cache hit: /purchase/
+2026-01-22 22:35:55.287 [JavaFX Application Thread] INFO  c.saciar.controller.MainController - View de compras carregada
+2026-01-22 22:35:55.297 [Thread-8] INFO  com.saciar.service.CompraService - 7 compras encontradas
+2026-01-22 22:35:58.177 [Thread-9] INFO  com.saciar.service.CompraService - Buscando compras com query: 222
+2026-01-22 22:35:58.179 [Thread-9] INFO  com.saciar.service.HttpClient - GET http://localhost:8000/purchase/search?q=222
+2026-01-22 22:35:58.226 [Thread-9] INFO  com.saciar.service.CompraService - 2 compras encontradas
+2026-01-22 22:36:00.662 [Thread-10] INFO  com.saciar.service.CompraService - Buscando compras com query: 
+2026-01-22 22:36:00.663 [Thread-10] INFO  com.saciar.service.CompraService - Buscando todas as compras
+2026-01-22 22:36:00.663 [Thread-10] INFO  com.saciar.service.HttpClient - Cache hit: /purchase/
+2026-01-22 22:36:00.664 [Thread-10] INFO  com.saciar.service.CompraService - 7 compras encontradas
+2026-01-22 22:36:06.209 [Thread-11] INFO  com.saciar.service.CompraService - Buscando compras com query: 2025-11
+2026-01-22 22:36:06.209 [Thread-11] INFO  com.saciar.service.HttpClient - GET http://localhost:8000/purchase/search?q=2025-11
+2026-01-22 22:36:06.251 [Thread-11] INFO  com.saciar.service.CompraService - 3 compras encontradas
+2026-01-22 22:36:09.384 [Thread-12] INFO  com.saciar.service.CompraService - Buscando todas as compras
+2026-01-22 22:36:09.385 [Thread-12] INFO  com.saciar.service.HttpClient - Cache hit: /purchase/
+2026-01-22 22:36:09.386 [Thread-12] INFO  com.saciar.service.CompraService - 7 compras encontradas

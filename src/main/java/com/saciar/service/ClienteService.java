@@ -31,7 +31,7 @@ public class ClienteService {
         logger.info("Buscando todos os clientes");
         
         var response = httpClient.get("/clientes", Object.class);
-        
+        System.out.println("Clientes: " + response.getData());
         if (response.isSuccess() && response.getData() != null) {
             try {
                 List<Cliente> clientes = objectMapper.convertValue(
@@ -139,14 +139,13 @@ public class ClienteService {
      */
     public boolean deleteCliente(String clienteId) {
         logger.info("Removendo cliente ID: {}", clienteId);
-        
-        var response = httpClient.delete("/clientes/" + clienteId);
-        
+        Map<String, Object> data = new HashMap<>();
+        data.put("id", clienteId);
+        var response = httpClient.delete("/clientes/" + clienteId, data);
         if (response.isSuccess()) {
             logger.info("Cliente removido com sucesso");
             return true;
         }
-        
         return false;
     }
 }

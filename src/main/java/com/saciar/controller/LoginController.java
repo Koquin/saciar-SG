@@ -24,6 +24,14 @@ public class LoginController {
     }
 
     @FXML
+    public void initialize() {
+        // Pressionar ENTER em qualquer campo chama handleLogin
+        usernameField.setOnAction(e -> handleLogin());
+        passwordField.setOnAction(e -> handleLogin());
+        btnLogin.setDefaultButton(true);
+    }
+
+    @FXML
     private void handleLogin() {
         String username = usernameField.getText();
         String password = passwordField.getText();

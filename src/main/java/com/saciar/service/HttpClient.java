@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class HttpClient {
     private static final Logger logger = LoggerFactory.getLogger(HttpClient.class);
-    private static final String BASE_URL = "http://192.168.0.110:8000";
+    private static final String BASE_URL = "http://localhost:8000";
     private static final int CACHE_DURATION_SECONDS = 30;
     
     private final OkHttpClient client;
@@ -205,6 +205,36 @@ public class HttpClient {
                 } else {
                     String body = response.body() != null ? response.body().string() : null;
                     logger.error("Erro HTTP {}: {}", statusCode, body);
+                    return new ApiResponse<>(false, null, "Erro: " + statusCode, statusCode);
+                }
+            }
+        } catch (IOException e) {
+            logger.error("Erro na requisição DELETE {}: {}", endpoint, e.getMessage());
+            return new ApiResponse<>(false, null, "Erro de conexão: " + e.getMessage());
+        }
+    }
+    
+    /**
+     * Realiza requisição DELETE com body
+     */
+    public ApiResponse<Void> delete(String endpoint, Map<String, Object> body) {
+        try {
+            String url = BASE_URL + endpoint;
+            RequestBody requestBody = RequestBody.create(
+                objectMapper.writeValueAsString(body), MediaType.parse("application/json"));
+            Request request = new Request.Builder()
+                    .url(url)
+                    .delete(requestBody)
+                    .build();
+            logger.info("DELETE {} BODY {}", url, body);
+            try (Response response = client.newCall(request).execute()) {
+                int statusCode = response.code();
+                if (response.isSuccessful()) {
+                    invalidateCache(endpoint);
+                    return new ApiResponse<>(true, null, null, statusCode);
+                } else {
+                    String respBody = response.body() != null ? response.body().string() : null;
+                    logger.error("Erro HTTP {}: {}", statusCode, respBody);
                     return new ApiResponse<>(false, null, "Erro: " + statusCode, statusCode);
                 }
             }
