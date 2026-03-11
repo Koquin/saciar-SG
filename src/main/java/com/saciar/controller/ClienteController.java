@@ -241,12 +241,16 @@ public class ClienteController {
     private void handleExportar() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Salvar Lista de Clientes");
+        fileChooser.setInitialFileName("clientes.csv");
         fileChooser.getExtensionFilters().add(
             new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
         
         File file = fileChooser.showSaveDialog(clienteTable.getScene().getWindow());
         
         if (file != null) {
+            if (!file.getName().toLowerCase().endsWith(".csv")) {
+                file = new File(file.getParentFile(), file.getName() + ".csv");
+            }
             try (FileWriter writer = new FileWriter(file)) {
                 writer.write("Nome;Telefone;Pontos;Troco\n");
                 

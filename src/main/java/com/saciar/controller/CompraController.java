@@ -207,12 +207,16 @@ public class CompraController {
     private void handleExportar() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Salvar Lista de Compras");
+        fileChooser.setInitialFileName("compras.csv");
         fileChooser.getExtensionFilters().add(
             new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
         
         File file = fileChooser.showSaveDialog(compraTable.getScene().getWindow());
         
         if (file != null) {
+            if (!file.getName().toLowerCase().endsWith(".csv")) {
+                file = new File(file.getParentFile(), file.getName() + ".csv");
+            }
             try (FileWriter writer = new FileWriter(file)) {
                 writer.write("Cliente;Telefone;Valor;Pontos;Data\n");
                 

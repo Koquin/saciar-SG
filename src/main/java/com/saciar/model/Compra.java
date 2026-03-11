@@ -16,6 +16,7 @@ public class Compra {
     private String cliente;
     private String telefone;
     private Double valor;
+    private boolean created;
     @JsonProperty("is_delivery")
     private Boolean isDelivery;
     @JsonProperty("pontos_ganhos")

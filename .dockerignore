@@ -1,0 +1,10 @@
+.git
+.idea
+.vscode
+venv
+target
+dist
+dist-windows
+logs
+teste
+*.log

@@ -147,8 +147,12 @@ public class ResgateController {
         
         File file = fileChooser.showSaveDialog(btnExportar.getScene().getWindow());
         if (file != null) {
+            if (!file.getName().toLowerCase().endsWith(".csv")) {
+                file = new File(file.getParentFile(), file.getName() + ".csv");
+            }
+            final File exportFile = file;
             new Thread(() -> {
-                try (FileWriter writer = new FileWriter(file)) {
+                try (FileWriter writer = new FileWriter(exportFile)) {
                     // Cabeçalho
                     writer.write("Cliente;Telefone;Prêmio;Pontos;Data\n");
                     
@@ -164,7 +168,7 @@ public class ResgateController {
                     }
                     
                     Platform.runLater(() -> showInfo("Dados exportados com sucesso!"));
-                    logger.info("Resgates exportados para: {}", file.getAbsolutePath());
+                    logger.info("Resgates exportados para: {}", exportFile.getAbsolutePath());
                 } catch (IOException e) {
                     logger.error("Erro ao exportar resgates", e);
                     Platform.runLater(() -> showError("Erro ao exportar: " + e.getMessage()));
@@ -212,7 +216,9 @@ public class ResgateController {
                         } else {
                             // Prioriza a mensagem da API se disponível
                             String errorMessage = response.getError();
-                            if (errorMessage == null || errorMessage.isEmpty()) {
+                            if (response.getStatusCode() != null && response.getStatusCode() == 404) {
+                                errorMessage = "Cliente não encontrado!";
+                            } else if (errorMessage == null || errorMessage.isEmpty()) {
                                 // Fallback para mensagens baseadas em status code
                                 if (response.getStatusCode() != null && response.getStatusCode() == 404) {
                                     errorMessage = "Cliente não encontrado!";
@@ -344,14 +350,27 @@ class ResgateDialog extends Dialog<Resgate> {
         // Botões
         ButtonType saveButton = new ButtonType("Registrar", ButtonBar.ButtonData.OK_DONE);
         getDialogPane().getButtonTypes().addAll(saveButton, ButtonType.CANCEL);
+        Button saveButtonNode = (Button) getDialogPane().lookupButton(saveButton);
+        saveButtonNode.setDisable(true);
+
+        Runnable updateSaveButtonState = () -> {
+            boolean telefonePreenchido = !telefoneField.getText().trim().isEmpty();
+            boolean premioSelecionado = premioCombo.getValue() != null;
+            saveButtonNode.setDisable(!(telefonePreenchido && premioSelecionado));
+        };
+
+        telefoneField.textProperty().addListener((observable, oldValue, newValue) -> updateSaveButtonState.run());
+        premioCombo.valueProperty().addListener((observable, oldValue, newValue) -> updateSaveButtonState.run());
         
         // Converte resultado
         setResultConverter(dialogButton -> {
             if (dialogButton == saveButton) {
                 Premio premioSelecionado = premioCombo.getValue();
-                if (premioSelecionado != null && !telefoneField.getText().isEmpty()) {
+                String telefone = telefoneField.getText().trim();
+                if (premioSelecionado != null && !telefone.isEmpty()) {
                     Resgate r = new Resgate();
-                    r.setTelefone(telefoneField.getText());
+                    r.setTelefone(telefone);
+                    r.setPremio(premioSelecionado.getPremio());
                     r.setPontos(premioSelecionado.getPontos());
                     return r;
                 }

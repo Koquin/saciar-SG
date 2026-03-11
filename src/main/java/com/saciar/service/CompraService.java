@@ -90,22 +90,31 @@ public class CompraService {
         
         var response = httpClient.post("/purchase", data, Object.class);
         
-        // Se retornou 201, a compra foi criada com sucesso
-        if (response.getStatusCode() != null && response.getStatusCode() == 201) {
-            if (response.getData() != null) {
-                try {
-                    Compra novaCompra = objectMapper.convertValue(response.getData(), Compra.class);
+        if (response.isSuccess() && response.getData() != null) {
+            try {
+                Compra novaCompra = objectMapper.convertValue(response.getData(), Compra.class);
+                if (novaCompra.isCreated()) {
                     logger.info("Compra criada com sucesso");
                     return new HttpClient.ApiResponse<>(true, novaCompra, "Compra registrada com sucesso!", response.getStatusCode());
-                } catch (Exception e) {
-                    logger.error("Erro ao converter compra: {}", e.getMessage());
-                    return new HttpClient.ApiResponse<>(false, null, "Erro ao processar resposta", response.getStatusCode());
                 }
+
+                Map<String, Object> responseData = objectMapper.convertValue(
+                    response.getData(),
+                    new TypeReference<Map<String, Object>>() {}
+                );
+                String message = responseData.get("message") != null
+                    ? responseData.get("message").toString()
+                    : "A API não confirmou a criação da compra.";
+                logger.warn("Compra não criada. Resposta da API: {}", responseData);
+                return new HttpClient.ApiResponse<>(false, novaCompra, message, response.getStatusCode());
+            } catch (Exception e) {
+                logger.error("Erro ao converter compra: {}", e.getMessage());
+                return new HttpClient.ApiResponse<>(false, null, "Erro ao processar resposta", response.getStatusCode());
             }
         }
         
-        // Qualquer outro status code é erro interno do servidor
-        return new HttpClient.ApiResponse<>(false, null, "Erro interno do servidor", response.getStatusCode());
+        String errorMessage = response.getError() != null ? response.getError() : "Erro interno do servidor";
+        return new HttpClient.ApiResponse<>(false, null, errorMessage, response.getStatusCode());
     }
     
     /**
