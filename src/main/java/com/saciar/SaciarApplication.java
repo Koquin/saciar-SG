@@ -70,6 +70,9 @@ public class SaciarApplication extends Application {
     }
     
     public static void main(String[] args) {
+        Thread.setDefaultUncaughtExceptionHandler((thread, throwable) ->
+            logger.error("Erro não tratado na thread {}", thread.getName(), throwable)
+        );
         launch(args);
     }
 }

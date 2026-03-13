@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class HttpClient {
     private static final Logger logger = LoggerFactory.getLogger(HttpClient.class);
-    private static final String BASE_URL = "http://localhost:8000";
+    private static final String BASE_URL = resolveBaseUrl();
     private static final int CACHE_DURATION_SECONDS = 30;
     
     private final OkHttpClient client;
@@ -26,6 +26,24 @@ public class HttpClient {
     private final Map<String, CachedResponse> cache;
     
     private static HttpClient instance;
+
+    private static String resolveBaseUrl() {
+        String configuredUrl = System.getProperty("saciar.api.base-url");
+        if (configuredUrl == null || configuredUrl.isBlank()) {
+            configuredUrl = System.getenv("SACIAR_API_BASE_URL");
+        }
+
+        if (configuredUrl == null || configuredUrl.isBlank()) {
+            return "http://192.168.0.108:8000";
+        }
+
+        configuredUrl = configuredUrl.trim();
+        if (configuredUrl.endsWith("/")) {
+            configuredUrl = configuredUrl.substring(0, configuredUrl.length() - 1);
+        }
+
+        return configuredUrl;
+    }
     
     private HttpClient() {
         this.client = new OkHttpClient.Builder()
