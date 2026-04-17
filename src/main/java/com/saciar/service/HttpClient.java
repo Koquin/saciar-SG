@@ -34,7 +34,7 @@ public class HttpClient {
         }
 
         if (configuredUrl == null || configuredUrl.isBlank()) {
-            return "http://192.168.0.108:8000";
+            return "http://192.168.0.166:8000";
         }
 
         configuredUrl = configuredUrl.trim();
